@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 620" width="380" height="620" role="img" aria-labelledby="title desc">
+  <title id="title">QUANTUMKEY — Logo</title>
+  <desc id="desc">Hexagon with radial luminous core, gradient ring, key shaft, and English text.</desc>
+
+  <defs>
+    <radialGradient id="g-core" cx="50%" cy="48%" r="45%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+      <stop offset="25%" stop-color="#BBA8FF" stop-opacity="0.95"/>
+      <stop offset="60%" stop-color="#6C40FF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#3AA8FF" stop-opacity="0.85"/>
+    </radialGradient>
+
+    <linearGradient id="g-hex" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7A4BFF"/>
+      <stop offset="50%" stop-color="#5B7BFF"/>
+      <stop offset="100%" stop-color="#33C0FF"/>
+    </linearGradient>
+
+    <linearGradient id="g-ring" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6C40FF" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#33C0FF" stop-opacity="0.6"/>
+    </linearGradient>
+
+    <filter id="f-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <style>
+      @keyframes pulse {
+        0% { transform: scale(1); opacity: 0.98; }
+        50% { transform: scale(1.03); opacity: 1; }
+        100% { transform: scale(1); opacity: 0.98; }
+      }
+      .pulse { transform-origin: 190px 180px; animation: pulse 3.6s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <!-- Exterior ring -->
+  <g filter="url(#f-glow)">
+    <circle cx="190" cy="180" r="150" fill="none" stroke="url(#g-ring)" stroke-width="10" opacity="0.95"/>
+  </g>
+
+  <!-- Hexagon -->
+  <g class="pulse">
+    <polygon
+      points="190,60 290,120 290,240 190,300 90,240 90,120"
+      fill="none"
+      stroke="url(#g-hex)"
+      stroke-width="6"
+      stroke-linejoin="round"
+      stroke-linecap="round"
+      opacity="0.99"
+    />
+  </g>
+
+  <!-- Core luminous star -->
+  <g class="pulse" filter="url(#f-glow)">
+    <circle cx="190" cy="180" r="36" fill="url(#g-core)" opacity="1"/>
+    <path d="M190 150 L200 174 L226 176 L204 193 L210 220 L190 204 L170 220 L176 193 L154 176 L180 174 Z"
+      fill="#FFFFFF" fill-opacity="0.90" transform="translate(0,0) scale(0.85) translate(28,12)"/>
+    <circle cx="190" cy="180" r="6" fill="#FFFFFF" opacity="1"/>
+  </g>
+
+  <!-- Key shaft -->
+  <rect x="175" y="300" width="30" height="110" rx="8" fill="url(#g-hex)" opacity="0.97"/>
+
+  <!-- Key bit -->
+  <g stroke="#6C40FF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M162 426 L218 426 L218 460 L162 460 Z" opacity="0.0"/>
+    <path d="M175 456 L175 472" />
+    <path d="M205 456 L205 472" />
+    <path d="M170 472 C170 480, 210 480, 210 472" stroke="#33C0FF" stroke-width="4" fill="none" opacity="0.95"/>
+  </g>
+
+  <!-- Inner accent rings -->
+  <g opacity="0.18">
+    <circle cx="190" cy="180" r="86" stroke="#FFFFFF" stroke-width="1.2" fill="none"/>
+    <circle cx="190" cy="180" r="110" stroke="#FFFFFF" stroke-width="0.6" fill="none"/>
+  </g>
+
+  <!-- Title (English) -->
+  <text x="190" y="560" font-family="Inter, Arial, Helvetica, sans-serif" font-size="34" text-anchor="middle" fill="#2E1B8C" font-weight="600" letter-spacing="1.2">
+    QUANTUMKEY
+  </text>
+
+  <!-- Subtitle in English -->
+  <text x="190" y="590" font-family="Inter, Arial, Helvetica, sans-serif" font-size="12.5" text-anchor="middle" fill="#5EAFFF" opacity="0.95">
+    The key between Consciousness and Intelligence
+  </text>
+</svg>
