@@ -1,87 +1,96 @@
 <!doctype html>
-
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>QuantumKey — The key between Consciousness and Intelligence</title>
-  <meta name="description" content="QuantumKey — a decentralized ecosystem connecting Consciousness and Artificial Intelligence. Whitepaper, tokenomics and specs." />  <!-- Open Graph / Social -->  <meta property="og:title" content="QuantumKey — The key between Consciousness and Intelligence" />
-  <meta property="og:description" content="A decentralized ecosystem connecting Consciousness and Artificial Intelligence. Read the whitepaper and tokenomics." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://qkey-founder.github.io/" />  <!-- Local stylesheet (relative to docs/) -->  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <a class="brand" href="./">
-        <img src="assets/quantumkey-logo.svg" alt="QuantumKey logo" class="logo" aria-hidden="false" />
-        <span class="brand-name">QUANTUMKEY</span>
-      </a><nav class="nav">
-    <ul>
-      <li><a href="WHITEPAPER.md">Whitepaper</a></li>
-      <li><a href="TOKENOMICS.md">Tokenomics</a></li>
-      <li><a href="#specs">Specs</a></li>
-    </ul>
-  </nav>
+  <main class="page">
+    <header class="site-header">
+      <div class="brand">
+        <img src="assets/quantumkey-logo.svg" alt="QuantumKey logo" class="brand-logo small" />
+        <h1 class="brand-title">QUANTUMKEY</h1>
+        <button class="nav-toggle" aria-label="Open menu">☰</button>
+      </div>
+    </header>
 
-  <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">☰</button>
-</div>
-
-  </header>  <main class="main">
     <section class="hero">
-      <div class="hero-inner container">
-        <h1>QuantumKey</h1>
-        <p class="lead">The key between Consciousness and Intelligence — a decentralized ecosystem.</p><div class="cta-row">
-      <a class="btn primary" href="WHITEPAPER.md">Read Whitepaper</a>
-      <a class="btn ghost" href="TOKENOMICS.md">Tokenomics</a>
-    </div>
+      <div class="hero-art">
+        <!-- canvas for dust particles -->
+        <canvas class="dust" aria-hidden="true"></canvas>
 
-  </div>
-</section>
+        <!-- central logo (big) -->
+        <div class="logo-frame" id="logo-frame">
+          <img src="assets/quantumkey-logo.svg" alt="QuantumKey logo" class="brand-logo big" id="hero-logo" />
+          <!-- glow rings -->
+          <div class="glow-ring ring-1"></div>
+          <div class="glow-ring ring-2"></div>
+        </div>
 
-<section id="specs" class="docs container">
-  <h2>Documents</h2>
-  <ul class="docs-list">
-    <li><a href="WHITEPAPER.md">WHITEPAPER</a></li>
-    <li><a href="TOKENOMICS.md">TOKENOMICS</a></li>
-    <li><a href="SPEC_TOKEN.md">SPEC_TOKEN</a></li>
-    <li><a href="SPEC_DAO.md">SPEC_DAO</a></li>
-  </ul>
-</section>
+        <!-- SVG overlay: orbit lines + curved text path -->
+        <svg class="orbits-svg" viewBox="-300 -300 600 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <!-- orbit connecting lines will be inserted dynamically by JS as <line> -->
+          <!-- curved marketing phrase around top -->
+          <defs>
+            <path id="arcTop" d="M -200 -120 A 240 240 0 0 1 200 -120" />
+            <path id="arcBottom" d="M -200 140 A 240 240 0 0 0 200 140" />
+          </defs>
 
-<section class="cards container">
-  <article class="card">
-    <h3>Identity</h3>
-    <p>Design, branding and cryptographic identity crafted for security and elegance.</p>
-  </article>
+          <text class="arc-text top">
+            <textPath xlink:href="#arcTop" startOffset="50%">
+              The delicate weave of Consciousness and Intelligence
+            </textPath>
+          </text>
 
-  <article class="card">
-    <h3>Governance</h3>
-    <p>Transparent DAO — rules and governance in SPEC_DAO.md.</p>
-  </article>
+          <text class="arc-text bottom">
+            <textPath xlink:href="#arcBottom" startOffset="50%">
+              Trust · Design · Governance · Tokenomics · Identity
+            </textPath>
+          </text>
 
-  <article class="card">
-    <h3>Token</h3>
-    <p>QKEY: full specification available in SPEC_TOKEN.md and TOKENOMICS.md.</p>
-  </article>
-</section>
+          <!-- container for dynamic orbit labels -->
+          <g id="orbit-labels"></g>
+          <g id="orbit-lines"></g>
+        </svg>
+      </div>
 
-  </main>  <footer class="site-footer">
-    <div class="container">
+      <div class="hero-copy">
+        <h2 class="hero-title">QuantumKey</h2>
+        <p class="hero-sub">
+          A subtle architecture of meaning — a key that harmonizes conscious intent with machine intelligence.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#WHITEPAPER">Read Whitepaper</a>
+          <a class="btn ghost" href="#TOKENOMICS">Tokenomics</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- sample content cards -->
+    <section class="cards">
+      <article class="card">
+        <h3>Identity</h3>
+        <p>Design, branding and cryptographic identity crafted for security and elegance.</p>
+      </article>
+      <article class="card">
+        <h3>Governance</h3>
+        <p>Transparent DAO rules and collaborative governance, encoded and auditable.</p>
+      </article>
+      <article class="card">
+        <h3>Token</h3>
+        <p>QKEY: full specification available in SPEC_TOKEN.md and TOKENOMICS.md.</p>
+      </article>
+    </section>
+
+    <footer class="site-footer">
       <p>© QuantumKey — The union of Consciousness and Intelligence.</p>
-      <p>Repository: <a href="https://github.com/qkey-founder/quantumkey" target="_blank" rel="noopener">qkey-founder/quantumkey</a></p>
-    </div>
-  </footer>  <script>
-    // simple nav toggle for small screens
-    document.addEventListener('click', function (e) {
-      var btn = document.querySelector('.menu-toggle');
-      var nav = document.querySelector('.nav');
-      if (!btn || !nav) return;
-      if (e.target === btn) {
-        var expanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!expanded));
-        nav.classList.toggle('open');
-      }
-    });
-  </script></body>
+      <p>Repository: <a href="https://github.com/qkey-founder/quantumkey" target="_blank" rel="noreferrer">qkey-founder/quantumkey</a></p>
+    </footer>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
 </html>
