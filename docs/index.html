@@ -3,60 +3,81 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>QUANTUMKEY — The key between Consciousness and Intelligence</title>
-  <link rel="stylesheet" href="./styles.css">
-  <meta name="description" content="QUANTUMKEY — ecossistema descentralizado que une Consciência e Inteligência.">
+  <title>QuantumKey — The key between Consciousness and Intelligence</title>
+  <meta name="description" content="QuantumKey — ecossistema descentralizado que une Consciência e Inteligência. Whitepaper, tokenomics e especificações." />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="QuantumKey" />
+  <meta property="og:description" content="The key between Consciousness and Intelligence" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://qkey-founder.github.io/quantumkey/" />
 </head>
 <body>
   <header class="site-header">
-    <nav class="nav">
-      <a class="brand" href="/">
-        <img src="/art/logo/quantumkey-logo.svg" alt="QUANTUMKEY logo" class="logo">
+    <div class="container">
+      <a class="brand" href="./">
+        <img src="assets/quantumkey-logo.svg" alt="QuantumKey logo" class="logo" />
         <span class="brand-name">QUANTUMKEY</span>
       </a>
-      <div class="nav-links">
-        <a href="/docs/WHITEPAPER.md">Whitepaper</a>
-        <a href="/docs/TOKENOMICS.md">Tokenomics</a>
-        <a href="/docs/SPEC_TOKEN.md">Specs</a>
-      </div>
-    </nav>
+      <nav class="nav">
+        <a href="WHITEPAPER.md">Whitepaper</a>
+        <a href="TOKENOMICS.md">Tokenomics</a>
+        <a href="SPEC_TOKEN.md">Spec Token</a>
+        <a href="SPEC_PROTOCOL.md">Spec Protocol</a>
+        <a href="SPEC_DAO.md">Spec DAO</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+    </div>
   </header>
 
   <main class="hero">
-    <div class="hero-inner">
-      <img src="/art/logo/quantumkey-logo.svg" alt="logo" class="hero-logo">
-      <h1>QUANTUMKEY</h1>
-      <p class="subtitle">The key between Consciousness and Intelligence</p>
+    <div class="container hero-inner">
+      <section class="hero-card">
+        <h1>QuantumKey</h1>
+        <p class="subtitle">A chave entre Consciência e Inteligência — um ecossistema descentralizado.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="WHITEPAPER.md">Ler Whitepaper</a>
+          <a class="btn ghost" href="TOKENOMICS.md">Tokenomics</a>
+        </div>
+      </section>
 
-      <div class="buttons">
-        <a class="btn primary" href="/docs/WHITEPAPER.md">Ler Whitepaper</a>
-        <a class="btn" href="/docs/TOKENOMICS.md">Tokenomics</a>
-      </div>
+      <aside class="visual">
+        <div class="visual-frame" aria-hidden="true">
+          <img src="assets/quantumkey-logo.svg" alt="" />
+        </div>
+      </aside>
     </div>
   </main>
 
-  <section class="quick-links">
-    <div class="card">
-      <h3>Documentos</h3>
-      <ul>
-        <li><a href="/docs/WHITEPAPER.md">WHITEPAPER</a></li>
-        <li><a href="/docs/TOKENOMICS.md">TOKENOMICS</a></li>
-        <li><a href="/docs/Brand-Guidelines.md">Brand Guidelines</a></li>
-        <li><a href="/docs/SPEC_TOKEN.md">SPEC_TOKEN</a></li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>Repositório</h3>
-      <ul>
-        <li><a href="/">Código no GitHub</a></li>
-        <li><a href="/art/logo/quantumkey-logo.svg">Ficheiro SVG</a></li>
-      </ul>
-    </div>
+  <section class="features container">
+    <article>
+      <h3>Identidade</h3>
+      <p>Design, marca e identidade criptográfica pensada para segurança e beleza.</p>
+    </article>
+    <article>
+      <h3>Governação</h3>
+      <p>DAO transparente — regras no SPEC_DAO.md.</p>
+    </article>
+    <article>
+      <h3>Token</h3>
+      <p>QKEY: especificação completa em SPEC_TOKEN.md e TOKENOMICS.md.</p>
+    </article>
   </section>
 
   <footer class="site-footer">
-    <p>© QUANTUMKEY — projeto aberto. Contact: @QKEY-FOUNDER</p>
+    <div class="container">
+      <p>© <strong>QuantumKey</strong> — A união de Consciência e Inteligência.</p>
+      <p><small>Repositorio: <a href="https://github.com/qkey-founder/quantumkey">qkey-founder/quantumkey</a></small></p>
+    </div>
   </footer>
+
+  <script>
+    // mobile menu toggle
+    const btn = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav');
+    btn?.addEventListener('click', ()=> {
+      nav?.classList.toggle('open');
+    });
+  </script>
 </body>
 </html>
