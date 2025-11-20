@@ -4,10 +4,10 @@
      width="1000" height="1000"
      role="img" aria-labelledby="title desc">
   <title id="title">QuantumKey emblem — circular neon badge</title>
-  <desc id="desc">Round badge with three glowing spheres (QFT, Consciousness, GR), dancing dashed arrows and bold QUANTUMKEY wordmark across the top.</desc>
+  <desc id="desc">Round badge with three glowing spheres (QFT, Consciousness, GR), dancing dashed arrows and QUANTUMKEY wordmark along the bottom circumference.</desc>
 
   <defs>
-    <!-- BRIGHTER NEON GRADIENTS -->
+    <!-- neon gradients -->
     <radialGradient id="gQ" cx="30%" cy="40%" r="60%">
       <stop offset="0%" stop-color="#e8ffff"/>
       <stop offset="35%" stop-color="#7fe8ff"/>
@@ -31,48 +31,38 @@
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
 
+    <!-- arc path for bottom wordmark -->
+    <path id="bottomArc" d="M140,640 A360,360 0 0,1 860,640" fill="none"/>
+
     <style><![CDATA[
-      .wordmark { font-family: 'Inter', system-ui, Arial, sans-serif; font-weight:800; fill:#e8fbff; letter-spacing:6px; }
+      .wordmark { font-family: 'Inter', system-ui, Arial, sans-serif; font-weight:800; fill:#e8fbff; letter-spacing:6px; font-size:36px; }
+      .wordmark-small { font-family: 'Inter', system-ui, Arial, sans-serif; font-weight:700; fill:#cfeffb; letter-spacing:4px; font-size:18px; }
       .tag { font-family: 'Inter', system-ui, Arial, sans-serif; font-size:13px; fill:rgba(220,240,255,0.78); }
       .label { font-family: 'Inter', system-ui, Arial, sans-serif; font-weight:700; fill:#042028; }
       .sub { font-family: 'Inter', system-ui, Arial, sans-serif; font-size:12px; fill:rgba(10,20,30,0.85); }
       .dash { fill:none; stroke:#bfefff; stroke-width:4; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:14 10; opacity:0.95; }
       .dash-warm { fill:none; stroke:#ffd7a8; stroke-width:4.6; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:12 8; opacity:0.98; }
-      /* CSS dash animation (safe for GitHub preview) */
       @keyframes dashA { from { stroke-dashoffset: 0 } to { stroke-dashoffset: -800 } }
       @keyframes dashB { from { stroke-dashoffset: 0 } to { stroke-dashoffset: -600 } }
       #pathA { animation: dashA 6.6s linear infinite; }
       #pathB { animation: dashB 5.2s linear infinite; }
       #pathC { animation: dashA 7.2s linear infinite; }
-
-      /* circular mask ensures round image */
-      .clipCircle { r: 480; cx:500; cy:500; }
     ]]></style>
   </defs>
 
-  <!-- circular background (badge) -->
-  <g transform="translate(0,0)">
-    <rect width="100%" height="100%" fill="#02131a"/>
-    <!-- subtle concentric vignette -->
-    <radialGradient id="vign" cx="50%" cy="50%" r="70%">
-      <stop offset="0%" stop-color="rgba(6,18,22,0.0)"/>
-      <stop offset="100%" stop-color="rgba(2,8,12,0.7)"/>
-    </radialGradient>
-    <rect width="100%" height="100%" fill="url(#vign)"/>
-  </g>
+  <!-- background -->
+  <rect width="100%" height="100%" fill="#02131a"/>
+  <radialGradient id="vign" cx="50%" cy="50%" r="70%">
+    <stop offset="0%" stop-color="rgba(6,18,22,0.0)"/>
+    <stop offset="100%" stop-color="rgba(2,8,12,0.76)"/>
+  </radialGradient>
+  <rect width="100%" height="100%" fill="url(#vign)"/>
 
-  <!-- circular clipping group to enforce round badge -->
+  <!-- circular clip to ensure round badge -->
   <g clip-path="circle(480 at 500 500)">
-    <!-- large soft glow rings behind content -->
-    <g filter="url(#softGlow)" opacity="0.9">
-      <circle cx="500" cy="500" r="420" fill="rgba(12,28,36,0.14)"/>
-      <circle cx="500" cy="500" r="360" fill="rgba(6,18,22,0.06)"/>
-    </g>
-
-    <!-- header: wordmark centered near top -->
-    <g transform="translate(500,150)" text-anchor="middle" aria-hidden="false">
-      <text class="wordmark" x="0" y="0" font-size="54">QUANTUMKEY</text>
-      <text class="tag" x="0" y="30">a subtle architecture of meaning — states, operators, and the bridge</text>
+    <g filter="url(#softGlow)" opacity="0.95">
+      <circle cx="500" cy="500" r="420" fill="rgba(12,28,36,0.12)"/>
+      <circle cx="500" cy="500" r="360" fill="rgba(6,18,22,0.04)"/>
     </g>
 
     <!-- left sphere: QFT -->
@@ -99,7 +89,7 @@
       <text class="sub" x="0" y="34" text-anchor="middle">structure • anchor</text>
     </g>
 
-    <!-- dashed animated arrows (no SMIL) -->
+    <!-- animated dashed arrows -->
     <path id="pathA" class="dash" d="M340,420 C420,360 500,300 520,280" stroke-linecap="round"/>
     <path class="dash" d="M520,280 L512,288 L524,292" stroke-width="4" />
 
@@ -108,6 +98,24 @@
 
     <path id="pathC" class="dash" d="M740,510 C620,520 520,490 380,460" stroke-linecap="round"/>
     <path class="dash" d="M380,460 L392,456 L378,450" stroke-width="4"/>
+
+    <!-- subtle connecting strokes (very soft) -->
+    <g stroke="rgba(255,255,255,0.03)" stroke-width="20" stroke-linecap="round">
+      <path d="M260,420 C380,360 520,320 520,280"/>
+      <path d="M520,280 C630,360 720,450 760,520"/>
+      <path d="M760,520 C620,504 520,490 380,460"/>
+    </g>
+
+    <!-- poetic equations lower center -->
+    <g transform="translate(360,760)" fill="rgba(230,240,255,0.95)" font-family="Inter, system-ui, Arial">
+      <text x="0" y="0" font-size="28" font-weight="700">(α) Φ = 1</text>
+      <text x="0" y="36" font-size="18">☐ + Λ → p  ≈  ½ Σ(Ψ, g)</text>
+    </g>
+
+    <!-- small signature -->
+    <g transform="translate(500,930)" text-anchor="middle" fill="rgba(200,220,235,0.6)" font-family="Inter, system-ui, Arial" font-size="11">
+      <text x="0" y="0">QuantumKey — interlinked fields, operators as motion, equations as portals</text>
+    </g>
 
     <!-- decorative particles -->
     <g fill="#c8f3ff" opacity="0.9">
@@ -119,22 +127,21 @@
       <circle cx="160" cy="360" r="1.3"/>
     </g>
 
-    <!-- poetic equations placed lower center -->
-    <g transform="translate(360,760)" fill="rgba(230,240,255,0.95)" font-family="Inter, system-ui, Arial">
-      <text x="0" y="0" font-size="28" font-weight="700">(α) Φ = 1</text>
-      <text x="0" y="36" font-size="18">☐ + Λ → p  ≈  ½ Σ(Ψ, g)</text>
+    <!-- WORDMARK along bottom arc (follows circumference) -->
+    <g aria-hidden="false">
+      <!-- the path is defined in <defs> as #bottomArc -->
+      <text class="wordmark">
+        <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">
+          QUANTUMKEY — THE KEY BETWEEN CONSCIOUSNESS &amp; INTELLIGENCE
+        </textPath>
+      </text>
+      <!-- smaller secondary curved tagline, inside the arc -->
+      <text class="wordmark-small">
+        <textPath href="#bottomArc" startOffset="52%" text-anchor="middle" dy="-26">
+          a subtle architecture of meaning — states, operators, and the bridge
+        </textPath>
+      </text>
     </g>
 
-    <!-- subtle structural strokes to unify composition -->
-    <g stroke="rgba(255,255,255,0.03)" stroke-width="24" stroke-linecap="round">
-      <path d="M260,420 C380,360 520,320 520,280"/>
-      <path d="M520,280 C630,360 720,450 760,520"/>
-      <path d="M760,520 C620,504 520,490 380,460"/>
-    </g>
-
-    <!-- small signature -->
-    <g transform="translate(500,930)" text-anchor="middle" fill="rgba(200,220,235,0.6)" font-family="Inter, system-ui, Arial" font-size="12">
-      <text x="0" y="0">QuantumKey — interlinked fields, operators as motion, equations as portals</text>
-    </g>
   </g>
 </svg>
