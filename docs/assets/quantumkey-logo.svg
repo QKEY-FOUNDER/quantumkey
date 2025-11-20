@@ -1,176 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 900 300"
-     width="900" height="300"
+     viewBox="0 0 1200 700"
+     width="1200" height="700"
      role="img" aria-labelledby="title desc">
-  <title id="title">QuantumKey emblem and wordmark</title>
-  <desc id="desc">Hexagonal emblem with glowing central core and orbiting nodes, plus a neon wordmark "QUANTUMKEY" where the Q contains a subtle key-shape — warm neon palette.</desc>
+  <title id="title">QuantumKey emblem — three fields and wordmark</title>
+  <desc id="desc">Three celestial bodies labeled QFT, Consciousness and GR linked by dancing arrows; decorative equations and the word QUANTUMKEY across the top.</desc>
 
   <defs>
-    <!-- warm neon gradients -->
-    <radialGradient id="coreGrad" cx="50%" cy="45%" r="50%">
-      <stop offset="0%" stop-color="#fff8db"/>
-      <stop offset="18%" stop-color="#ffd36a"/>
-      <stop offset="48%" stop-color="#ff7ea6"/>
-      <stop offset="82%" stop-color="#6fe0ff"/>
-      <stop offset="100%" stop-color="#0a1b2b"/>
+    <!-- color palettes -->
+    <radialGradient id="grad-qft" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#b8fff7"/>
+      <stop offset="45%" stop-color="#6fe6ff"/>
+      <stop offset="100%" stop-color="#2a8cff"/>
     </radialGradient>
 
-    <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ffd36a"/>
-      <stop offset="40%" stop-color="#ff7ea6"/>
-      <stop offset="75%" stop-color="#6fe0ff"/>
-      <stop offset="100%" stop-color="#2f6bff"/>
-    </linearGradient>
+    <radialGradient id="grad-cons" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#fff8d1"/>
+      <stop offset="45%" stop-color="#ffb86b"/>
+      <stop offset="100%" stop-color="#ff6f9e"/>
+    </radialGradient>
 
-    <linearGradient id="wordGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#ffb86b"/>
-      <stop offset="40%" stop-color="#ff6fa1"/>
-      <stop offset="80%" stop-color="#7fe6ff"/>
-    </linearGradient>
+    <radialGradient id="grad-gr" cx="70%" cy="60%" r="70%">
+      <stop offset="0%" stop-color="#fff4d9"/>
+      <stop offset="45%" stop-color="#ffd36a"/>
+      <stop offset="100%" stop-color="#f07f2d"/>
+    </radialGradient>
 
-    <!-- subtle blur -->
-    <filter id="softBlur" x="-40%" y="-40%" width="180%" height="180%">
-      <feGaussianBlur stdDeviation="10" result="b"/>
+    <!-- subtle glow filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
 
-    <!-- small crisp shadow -->
-    <filter id="shadowSmall" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#001" flood-opacity="0.35"/>
-    </filter>
-
-    <!-- stroke glow for neon effect -->
-    <filter id="strokeGlow" x="-60%" y="-60%" width="220%" height="220%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-
-    <!-- soft vignette -->
-    <radialGradient id="bgVign" cx="50%" cy="40%" r="60%">
-      <stop offset="0%" stop-color="#061218" stop-opacity="0.0"/>
-      <stop offset="100%" stop-color="#03060b" stop-opacity="0.7"/>
-    </radialGradient>
+    <!-- dashed-arrow style -->
+    <style type="text/css"><![CDATA[
+      .arrow { fill:none; stroke:#cfefff; stroke-width:3.2; stroke-linecap:round; stroke-linejoin:round;
+               stroke-dasharray: 8 10; opacity:0.95 }
+      .arrow-warm { stroke:#ffd8a8; opacity:0.92 }
+      .particle { fill:#cfefff; opacity:0.9 }
+      .label { font-family: Inter, system-ui, Arial, Helvetica, sans-serif; font-weight:700; }
+      .subtitle { font-family: Inter, system-ui, Arial, Helvetica, sans-serif; font-weight:600; fill:rgba(230,240,255,0.9);}
+    ]]></style>
   </defs>
 
-  <!-- background vignette -->
-  <rect width="100%" height="100%" fill="url(#bgVign)"/>
-
-  <!-- left emblem group -->
-  <g id="emblem" transform="translate(140,150)">
-
-    <!-- faint ambient ring -->
-    <circle cx="0" cy="0" r="122" fill="none" stroke="rgba(255,140,90,0.06)" stroke-width="22"/>
-
-    <!-- hex plate -->
-    <g transform="translate(0,0)" filter="url(#shadowSmall)">
-      <polygon points="0,-96 83,-48 83,48 0,96 -83,48 -83,-48"
-               fill="url(#hexGrad)" stroke="rgba(255,255,255,0.12)" stroke-width="2.2" stroke-linejoin="round" />
-    </g>
-
-    <!-- inner soft inset -->
-    <polygon points="0,-80 70,-40 70,40 0,80 -70,40 -70,-40" fill="rgba(0,0,0,0.06)"/>
-
-    <!-- glowing core -->
-    <g id="core" filter="url(#softBlur)">
-      <circle cx="0" cy="0" r="52" fill="url(#coreGrad)" opacity="0.95"/>
-      <circle cx="0" cy="0" r="28" fill="#fff8d8" opacity="0.9">
-        <animate attributeName="r" values="26;30;26" dur="2.6s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.95;0.8;0.95" dur="2.6s" repeatCount="indefinite" />
-      </circle>
-      <circle cx="0" cy="0" r="10" fill="#ffffff" opacity="1">
-        <animate attributeName="r" values="8;12;8" dur="1.8s" repeatCount="indefinite"/>
-      </circle>
-    </g>
-
-    <!-- orbit nodes (use group rotation for subtle motion) -->
-    <g id="orbits">
-      <animateTransform attributeName="transform" attributeType="XML" type="rotate"
-                        from="0" to="360" dur="20s" repeatCount="indefinite"/>
-      <!-- node top-right -->
-      <g transform="translate(84,-60)">
-        <circle r="6.2" fill="#ffb86b" opacity="0.98">
-          <animate attributeName="r" values="5.8;7.2;5.8" dur="4.6s" repeatCount="indefinite"/>
-        </circle>
-      </g>
-      <!-- node bottom -->
-      <g transform="translate(0,112)">
-        <circle r="6.2" fill="#ff6fa1" opacity="0.98">
-          <animate attributeName="r" values="6.2;7.6;6.2" dur="4.9s" repeatCount="indefinite"/>
-        </circle>
-      </g>
-      <!-- node left -->
-      <g transform="translate(-84,-60)">
-        <circle r="6.2" fill="#7fe6ff" opacity="0.98">
-          <animate attributeName="r" values="6.2;8;6.2" dur="5.2s" repeatCount="indefinite"/>
-        </circle>
-      </g>
-    </g>
-
-    <!-- linking subtle lines -->
-    <g stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-linecap="round">
-      <line x1="0" y1="0" x2="84" y2="-60"/>
-      <line x1="0" y1="0" x2="0" y2="112"/>
-      <line x1="0" y1="0" x2="-84" y2="-60"/>
-    </g>
-
-    <!-- thin crisp rim -->
-    <polygon points="0,-92 79,-44 79,44 0,92 -79,44 -79,-44" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-
+  <!-- background -->
+  <rect width="100%" height="100%" fill="#041018"/>
+  <g opacity="0.14" filter="url(#glow)">
+    <circle cx="180" cy="140" r="180" fill="#0a2b33"/>
+    <circle cx="1020" cy="520" r="200" fill="#0b1a2f"/>
   </g>
 
-  <!-- wordmark group to the right -->
-  <g id="wordmark" transform="translate(330,170)" font-family="Inter, system-ui, Arial, Helvetica, sans-serif" aria-hidden="false">
-    <!-- decorative neon glow behind word -->
-    <rect x="-40" y="-110" width="520" height="220" rx="28" fill="none" />
-
-    <!-- stylized Q as a composed group (circle + key-tail) -->
-    <g id="Q" transform="translate(0,-8)">
-      <!-- Q circle -->
-      <circle cx="0" cy="0" r="38" fill="url(#wordGlow)" filter="url(#strokeGlow)" opacity="0.96"/>
-      <circle cx="0" cy="0" r="26" fill="#05121a" opacity="0.9"/>
-
-      <!-- key-slot inside Q (vertical slot + teeth) -->
-      <g transform="translate(8,-4)" fill="#ffd6b0">
-        <rect x="-4" y="-14" width="8" height="20" rx="3" />
-        <rect x="-7" y="6" width="5" height="4" rx="1" />
-        <rect x="1" y="6" width="5" height="4" rx="1" />
-      </g>
-
-      <!-- tail that suggests a key handle & Q tail -->
-      <path d="M -18 16 L -6 24 L -2 22" stroke="#ffd6b0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
-        <animate attributeName="stroke-opacity" values="0.9;0.45;0.9" dur="3.2s" repeatCount="indefinite"/>
-      </path>
-    </g>
-
-    <!-- word text - "UANTUMKEY" (we leave first letter Q as drawn above) -->
-    <g transform="translate(70,-20)" font-size="48" fill="url(#wordGlow)" style="text-rendering:geometricPrecision">
-      <text x="0" y="16" font-weight="700" letter-spacing="2">UANTUMKEY</text>
-      <!-- soft inner shadow / outline -->
-      <text x="0" y="16" font-weight="700" letter-spacing="2" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="1.6">UANTUMKEY</text>
-    </g>
-
-    <!-- tagline below -->
-    <g transform="translate(24,60)" font-size="13" fill="rgba(220,235,255,0.85)">
-      <text x="0" y="0">A subtle architecture of meaning — a key that harmonizes</text>
-      <text x="0" y="18">conscious intent with machine intelligence.</text>
-    </g>
+  <!-- header wordmark -->
+  <g transform="translate(600,70)" text-anchor="middle" aria-hidden="false">
+    <text x="0" y="0" font-size="48" font-family="Inter, system-ui, Arial" font-weight="800" fill="#dff7ff" letter-spacing="6">QUANTUMKEY</text>
+    <text x="0" y="30" font-size="13" fill="rgba(200,220,235,0.65)" font-family="Inter, system-ui, Arial">
+      a subtle architecture of meaning — states, operators, and the bridge between them
+    </text>
   </g>
 
-  <!-- small decorative particles (background, warm neon specks) -->
-  <g opacity="0.7" fill="#ffd6b0">
-    <circle cx="60" cy="60" r="1.3" />
-    <circle cx="100" cy="32" r="1.1" />
-    <circle cx="210" cy="40" r="1.6" />
-    <circle cx="360" cy="24" r="1.2" />
-    <circle cx="540" cy="80" r="1.4" />
-    <circle cx="470" cy="200" r="1.1" />
-    <circle cx="720" cy="40" r="1.3" />
+  <!-- three celestial bodies (circles as "vibrational bodies") -->
+  <!-- QFT (left) -->
+  <g id="g-qft" transform="translate(220,300)">
+    <circle cx="0" cy="0" r="110" fill="url(#grad-qft)" filter="url(#glow)"/>
+    <circle cx="-8" cy="-6" r="4" fill="#ffffff" opacity="0.9"/>
+    <text x="0" y="8" class="label" font-size="34" text-anchor="middle" fill="#04273a">QFT</text>
+    <text x="0" y="44" font-size="12" text-anchor="middle" fill="rgba(10,30,40,0.85)">fields • possibility</text>
   </g>
 
-  <!-- ensure clickable accessible area -->
-  <rect x="0" y="0" width="900" height="300" fill="transparent" />
+  <!-- Consciousness (top-right) -->
+  <g id="g-cons" transform="translate(650,170)">
+    <circle cx="0" cy="0" r="120" fill="url(#grad-cons)" filter="url(#glow)"/>
+    <circle cx="-18" cy="-22" r="3.8" fill="#ffffff" opacity="0.9"/>
+    <text x="0" y="12" class="label" font-size="28" text-anchor="middle" fill="#2a1020">Consciousness</text>
+    <text x="0" y="36" font-size="12" text-anchor="middle" fill="rgba(30,18,22,0.85)">awareness • integration</text>
+  </g>
+
+  <!-- GR (bottom-right) -->
+  <g id="g-gr" transform="translate(880,430)">
+    <circle cx="0" cy="0" r="95" fill="url(#grad-gr)" filter="url(#glow)"/>
+    <circle cx="12" cy="8" r="3.4" fill="#ffffff" opacity="0.9"/>
+    <text x="0" y="8" class="label" font-size="30" text-anchor="middle" fill="#2b1410">GR</text>
+    <text x="0" y="32" font-size="12" text-anchor="middle" fill="rgba(30,20,18,0.86)">structure • anchor</text>
+  </g>
+
+  <!-- dancing arrows (operators) -->
+  <!-- arrow path 1: QFT -> Consciousness -->
+  <path id="p1" d="M320,310 C420,220 520,200 600,230" class="arrow"/>
+  <path d="M592,228 L602,234 L592,240" class="arrow" fill="none" stroke="#cfefff" stroke-width="3" stroke-linejoin="round" />
+
+  <!-- animated dash offset to create dancing motion -->
+  <animate xlink:href="#p1" attributeName="stroke-dashoffset" from="0" to="-600" dur="6s" repeatCount="indefinite"/>
+
+  <!-- arrow path 2: Consciousness -> GR (warm tone) -->
+  <path id="p2" d="M710,270 C780,320 820,360 860,400" class="arrow arrow-warm"/>
+  <path d="M860,400 L852,392 L868,392" class="arrow arrow-warm" fill="none" stroke="#ffd8a8" stroke-width="3"/>
+
+  <animate xlink:href="#p2" attributeName="stroke-dashoffset" from="0" to="-600" dur="5.2s" repeatCount="indefinite"/>
+
+  <!-- arrow path 3: GR -> QFT -->
+  <path id="p3" d="M800,470 C640,470 480,420 340,360" class="arrow" />
+  <path d="M340,360 L350,354 L338,352" class="arrow" fill="none" stroke="#cfefff" stroke-width="3"/>
+
+  <animate xlink:href="#p3" attributeName="stroke-dashoffset" from="0" to="-600" dur="7s" repeatCount="indefinite"/>
+
+  <!-- small traveling particles along paths (visual motion) -->
+  <g id="movingDots" fill="#ffffff" opacity="0.9">
+    <circle r="3" >
+      <animateMotion dur="6s" repeatCount="indefinite" rotate="auto">
+        <mpath xlink:href="#p1"/>
+      </animateMotion>
+    </circle>
+    <circle r="3.2" fill="#ffd8a8">
+      <animateMotion dur="5.2s" repeatCount="indefinite" rotate="auto">
+        <mpath xlink:href="#p2"/>
+      </animateMotion>
+    </circle>
+    <circle r="2.6" fill="#bff4ff">
+      <animateMotion dur="7s" repeatCount="indefinite" rotate="auto">
+        <mpath xlink:href="#p3"/>
+      </animateMotion>
+    </circle>
+  </g>
+
+  <!-- decorative "equation portals" (non-literal, poetic) -->
+  <g transform="translate(360,520)" fill="rgba(220,230,240,0.9)" font-family="Inter, system-ui, Arial">
+    <text x="0" y="0" font-size="28" font-weight="700">(α) Φ = 1</text>
+    <text x="0" y="38" font-size="20">☐ + Λ → p  ≈  ½ Σ(Ψ, g)</text>
+  </g>
+
+  <!-- central subtle linking lines to suggest fields -->
+  <g stroke="rgba(255,255,255,0.05)" stroke-width="18" stroke-linecap="round">
+    <path d="M220,300 C350,260 560,220 650,170" />
+    <path d="M650,170 C760,260 840,340 880,430" />
+    <path d="M880,430 C740,420 520,380 340,360" />
+  </g>
+
+  <!-- footer small wordmark / signature -->
+  <g transform="translate(600,660)" text-anchor="middle" fill="rgba(200,220,235,0.6)">
+    <text x="0" y="0" font-family="Inter, system-ui, Arial" font-size="12">QuantumKey — interlinked fields, operators as motion, equations as portals</text>
+  </g>
+
 </svg>
