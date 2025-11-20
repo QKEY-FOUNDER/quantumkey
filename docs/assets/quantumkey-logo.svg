@@ -7,7 +7,6 @@
   <desc id="desc">Three celestial bodies labeled QFT, Consciousness and GR linked by dancing arrows; decorative equations and the word QUANTUMKEY across the top.</desc>
 
   <defs>
-    <!-- color palettes -->
     <radialGradient id="grad-qft" cx="30%" cy="30%" r="70%">
       <stop offset="0%" stop-color="#b8fff7"/>
       <stop offset="45%" stop-color="#6fe6ff"/>
@@ -26,27 +25,31 @@
       <stop offset="100%" stop-color="#f07f2d"/>
     </radialGradient>
 
-    <!-- subtle glow filter -->
     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
 
-    <!-- dashed-arrow style -->
     <style type="text/css"><![CDATA[
-      .arrow { fill:none; stroke:#cfefff; stroke-width:3.2; stroke-linecap:round; stroke-linejoin:round;
-               stroke-dasharray: 8 10; opacity:0.95 }
-      .arrow-warm { stroke:#ffd8a8; opacity:0.92 }
-      .particle { fill:#cfefff; opacity:0.9 }
+      .arrow { fill:none; stroke:#bfefff; stroke-width:3.2; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray: 12 10; opacity:0.95; }
+      .arrow-warm { stroke:#ffd8a8; opacity:0.95; }
       .label { font-family: Inter, system-ui, Arial, Helvetica, sans-serif; font-weight:700; }
       .subtitle { font-family: Inter, system-ui, Arial, Helvetica, sans-serif; font-weight:600; fill:rgba(230,240,255,0.9);}
+      /* animate dash offset using CSS (safe) */
+      @keyframes dash-move { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -600; } }
+      @keyframes dash-move-slow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -900; } }
+      #p1 { animation: dash-move 6s linear infinite; }
+      #p2 { animation: dash-move 5.2s linear infinite; }
+      #p3 { animation: dash-move-slow 7s linear infinite; }
+      /* subtle logo highlight */
+      .plate { filter: url(#glow); opacity: 0.98; }
     ]]></style>
   </defs>
 
   <!-- background -->
   <rect width="100%" height="100%" fill="#041018"/>
-  <g opacity="0.14" filter="url(#glow)">
-    <circle cx="180" cy="140" r="180" fill="#0a2b33"/>
+  <g opacity="0.12">
+    <circle cx="160" cy="140" r="180" fill="#0a2b33"/>
     <circle cx="1020" cy="520" r="200" fill="#0b1a2f"/>
   </g>
 
@@ -58,86 +61,63 @@
     </text>
   </g>
 
-  <!-- three celestial bodies (circles as "vibrational bodies") -->
-  <!-- QFT (left) -->
+  <!-- celestial bodies -->
   <g id="g-qft" transform="translate(220,300)">
-    <circle cx="0" cy="0" r="110" fill="url(#grad-qft)" filter="url(#glow)"/>
-    <circle cx="-8" cy="-6" r="4" fill="#ffffff" opacity="0.9"/>
+    <circle cx="0" cy="0" r="110" fill="url(#grad-qft)" class="plate"/>
+    <circle cx="-8" cy="-6" r="4" fill="#ffffff" opacity="0.95"/>
     <text x="0" y="8" class="label" font-size="34" text-anchor="middle" fill="#04273a">QFT</text>
     <text x="0" y="44" font-size="12" text-anchor="middle" fill="rgba(10,30,40,0.85)">fields • possibility</text>
   </g>
 
-  <!-- Consciousness (top-right) -->
   <g id="g-cons" transform="translate(650,170)">
-    <circle cx="0" cy="0" r="120" fill="url(#grad-cons)" filter="url(#glow)"/>
-    <circle cx="-18" cy="-22" r="3.8" fill="#ffffff" opacity="0.9"/>
+    <circle cx="0" cy="0" r="120" fill="url(#grad-cons)" class="plate"/>
+    <circle cx="-18" cy="-22" r="3.8" fill="#ffffff" opacity="0.95"/>
     <text x="0" y="12" class="label" font-size="28" text-anchor="middle" fill="#2a1020">Consciousness</text>
     <text x="0" y="36" font-size="12" text-anchor="middle" fill="rgba(30,18,22,0.85)">awareness • integration</text>
   </g>
 
-  <!-- GR (bottom-right) -->
   <g id="g-gr" transform="translate(880,430)">
-    <circle cx="0" cy="0" r="95" fill="url(#grad-gr)" filter="url(#glow)"/>
-    <circle cx="12" cy="8" r="3.4" fill="#ffffff" opacity="0.9"/>
+    <circle cx="0" cy="0" r="95" fill="url(#grad-gr)" class="plate"/>
+    <circle cx="12" cy="8" r="3.4" fill="#ffffff" opacity="0.95"/>
     <text x="0" y="8" class="label" font-size="30" text-anchor="middle" fill="#2b1410">GR</text>
     <text x="0" y="32" font-size="12" text-anchor="middle" fill="rgba(30,20,18,0.86)">structure • anchor</text>
   </g>
 
-  <!-- dancing arrows (operators) -->
-  <!-- arrow path 1: QFT -> Consciousness -->
+  <!-- dancing arrows (dash only) -->
   <path id="p1" d="M320,310 C420,220 520,200 600,230" class="arrow"/>
-  <path d="M592,228 L602,234 L592,240" class="arrow" fill="none" stroke="#cfefff" stroke-width="3" stroke-linejoin="round" />
+  <path d="M592,228 L602,234 L592,240" class="arrow" fill="none" stroke="#bfefff" stroke-width="3" stroke-linejoin="round" />
 
-  <!-- animated dash offset to create dancing motion -->
-  <animate xlink:href="#p1" attributeName="stroke-dashoffset" from="0" to="-600" dur="6s" repeatCount="indefinite"/>
-
-  <!-- arrow path 2: Consciousness -> GR (warm tone) -->
   <path id="p2" d="M710,270 C780,320 820,360 860,400" class="arrow arrow-warm"/>
   <path d="M860,400 L852,392 L868,392" class="arrow arrow-warm" fill="none" stroke="#ffd8a8" stroke-width="3"/>
 
-  <animate xlink:href="#p2" attributeName="stroke-dashoffset" from="0" to="-600" dur="5.2s" repeatCount="indefinite"/>
-
-  <!-- arrow path 3: GR -> QFT -->
   <path id="p3" d="M800,470 C640,470 480,420 340,360" class="arrow" />
-  <path d="M340,360 L350,354 L338,352" class="arrow" fill="none" stroke="#cfefff" stroke-width="3"/>
+  <path d="M340,360 L350,354 L338,352" class="arrow" fill="none" stroke="#bfefff" stroke-width="3"/>
 
-  <animate xlink:href="#p3" attributeName="stroke-dashoffset" from="0" to="-600" dur="7s" repeatCount="indefinite"/>
-
-  <!-- small traveling particles along paths (visual motion) -->
-  <g id="movingDots" fill="#ffffff" opacity="0.9">
-    <circle r="3" >
-      <animateMotion dur="6s" repeatCount="indefinite" rotate="auto">
-        <mpath xlink:href="#p1"/>
-      </animateMotion>
-    </circle>
-    <circle r="3.2" fill="#ffd8a8">
-      <animateMotion dur="5.2s" repeatCount="indefinite" rotate="auto">
-        <mpath xlink:href="#p2"/>
-      </animateMotion>
-    </circle>
-    <circle r="2.6" fill="#bff4ff">
-      <animateMotion dur="7s" repeatCount="indefinite" rotate="auto">
-        <mpath xlink:href="#p3"/>
-      </animateMotion>
-    </circle>
+  <!-- small static decorative "particles" -->
+  <g fill="#dff7ff" opacity="0.85">
+    <circle cx="520" cy="120" r="1.8"/>
+    <circle cx="700" cy="90" r="1.4"/>
+    <circle cx="760" cy="250" r="1.6"/>
+    <circle cx="430" cy="400" r="1.2"/>
+    <circle cx="980" cy="520" r="1.6"/>
+    <circle cx="160" cy="360" r="1.3"/>
   </g>
 
-  <!-- decorative "equation portals" (non-literal, poetic) -->
-  <g transform="translate(360,520)" fill="rgba(220,230,240,0.9)" font-family="Inter, system-ui, Arial">
-    <text x="0" y="0" font-size="28" font-weight="700">(α) Φ = 1</text>
-    <text x="0" y="38" font-size="20">☐ + Λ → p  ≈  ½ Σ(Ψ, g)</text>
+  <!-- poetic equations -->
+  <g transform="translate(360,520)" fill="rgba(220,230,240,0.95)" font-family="Inter, system-ui, Arial">
+    <text x="0" y="0" font-size="28" font-weight="700" text-anchor="start">(α) Φ = 1</text>
+    <text x="0" y="36" font-size="18" text-anchor="start">☐ + Λ → p  ≈  ½ Σ(Ψ, g)</text>
   </g>
 
-  <!-- central subtle linking lines to suggest fields -->
-  <g stroke="rgba(255,255,255,0.05)" stroke-width="18" stroke-linecap="round">
+  <!-- subtle linking strokes -->
+  <g stroke="rgba(255,255,255,0.04)" stroke-width="18" stroke-linecap="round">
     <path d="M220,300 C350,260 560,220 650,170" />
     <path d="M650,170 C760,260 840,340 880,430" />
     <path d="M880,430 C740,420 520,380 340,360" />
   </g>
 
-  <!-- footer small wordmark / signature -->
+  <!-- footer small signature -->
   <g transform="translate(600,660)" text-anchor="middle" fill="rgba(200,220,235,0.6)">
     <text x="0" y="0" font-family="Inter, system-ui, Arial" font-size="12">QuantumKey — interlinked fields, operators as motion, equations as portals</text>
   </g>
-
 </svg>
