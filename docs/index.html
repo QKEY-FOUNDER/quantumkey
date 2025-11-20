@@ -18,15 +18,21 @@
   <header class="site-header">
     <div class="container">
       <div class="brand">
-        <button id="menu-toggle" aria-label="Toggle menu" class="hamburger">☰</button>
-        <img src="./assets/quantumkey-logo.svg" alt="QuantumKey logo" class="brand-logo" />
-        <span class="brand-name">QUANTUMKEY</span>
+        <!-- Primary CTAs are direct links to the markdown files hosted by GitHub Pages -->
+        <a class="button-primary" href="WHITEPAPER.md" target="_self" rel="noopener">Read Whitepaper</a>
+        <a class="button-secondary" href="TOKENOMICS.md" target="_self" rel="noopener">Tokenomics</a>
+
+        <a class="brand-link" href="./index.html" aria-label="QuantumKey home">
+          <img src="./assets/quantumkey-logo.svg" alt="QuantumKey logo" class="brand-logo" />
+          <span class="brand-name">QUANTUMKEY</span>
+        </a>
       </div>
 
-      <nav id="main-nav" class="nav" aria-hidden="true">
-  <a href="./WHITEPAPER.md" target="_self">Whitepaper</a>
-  <a href="./TOKENOMICS.md" target="_self">Tokenomics</a>
-  <a href="./SPEC_TOKEN.md" target="_self">Specs</a>
+      <nav id="main-nav" class="nav" aria-hidden="false">
+        <!-- nav links point directly to the docs files so they reliably open on GitHub Pages -->
+        <a href="WHITEPAPER.md" target="_self" rel="noopener">Whitepaper</a>
+        <a href="TOKENOMICS.md" target="_self" rel="noopener">Tokenomics</a>
+        <a href="SPEC_TOKEN.md" target="_self" rel="noopener">Specs</a>
       </nav>
     </div>
   </header>
@@ -43,8 +49,9 @@
           <h1>QuantumKey</h1>
           <p class="tagline">A subtle architecture of meaning — a key that harmonizes conscious intent with machine intelligence.</p>
           <div class="cta-row">
-            <a class="btn btn-primary" href="#whitepaper">Read Whitepaper</a>
-            <a class="btn btn-outline" href="#tokenomics">Tokenomics</a>
+            <!-- CTAs changed to direct file links (no JS needed) -->
+            <a class="btn btn-primary" href="WHITEPAPER.md" target="_self" rel="noopener">Read Whitepaper</a>
+            <a class="btn btn-outline" href="TOKENOMICS.md" target="_self" rel="noopener">Tokenomics</a>
           </div>
         </div>
       </div>
@@ -52,17 +59,18 @@
 
     <section class="cards container">
       <article class="card" id="whitepaper">
-        <h3>Identity</h3>
+        <!-- headings as direct links to the appropriate spec documents -->
+        <h3><a href="SPEC_IDENTITY.md" target="_self" rel="noopener">Identity</a></h3>
         <p>Design, branding and cryptographic identity crafted for security and elegance.</p>
       </article>
 
       <article class="card" id="tokenomics">
-        <h3>Governance</h3>
+        <h3><a href="SPEC_DAO.md" target="_self" rel="noopener">Governance</a></h3>
         <p>Transparent DAO — rules and governance in SPEC_DAO.md.</p>
       </article>
 
       <article class="card" id="specs">
-        <h3>Token</h3>
+        <h3><a href="SPEC_TOKEN.md" target="_self" rel="noopener">Token</a></h3>
         <p>QKEY full specification available in SPEC_TOKEN.md and TOKENOMICS.md.</p>
       </article>
     </section>
