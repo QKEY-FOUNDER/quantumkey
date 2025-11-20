@@ -1,148 +1,176 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 512 512"
-     width="512" height="512"
+     viewBox="0 0 900 300"
+     width="900" height="300"
      role="img" aria-labelledby="title desc">
-  <title id="title">QuantumKey emblem</title>
-  <desc id="desc">Hexagonal shield with glowing energy core and three orbiting nodes — animated.</desc>
+  <title id="title">QuantumKey emblem and wordmark</title>
+  <desc id="desc">Hexagonal emblem with glowing central core and orbiting nodes, plus a neon wordmark "QUANTUMKEY" where the Q contains a subtle key-shape — warm neon palette.</desc>
 
   <defs>
-    <!-- Gradients -->
-    <radialGradient id="g-core" cx="50%" cy="50%" r="60%">
-      <stop offset="0%" stop-color="#bdf6ff" stop-opacity="1"/>
-      <stop offset="35%" stop-color="#6fe0ff" stop-opacity="0.95"/>
-      <stop offset="70%" stop-color="#2a9bff" stop-opacity="0.55"/>
-      <stop offset="100%" stop-color="#0b1120" stop-opacity="0"/>
+    <!-- warm neon gradients -->
+    <radialGradient id="coreGrad" cx="50%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="#fff8db"/>
+      <stop offset="18%" stop-color="#ffd36a"/>
+      <stop offset="48%" stop-color="#ff7ea6"/>
+      <stop offset="82%" stop-color="#6fe0ff"/>
+      <stop offset="100%" stop-color="#0a1b2b"/>
     </radialGradient>
 
-    <linearGradient id="g-hex" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#7fe6ff"/>
-      <stop offset="45%" stop-color="#57a8ff"/>
+    <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd36a"/>
+      <stop offset="40%" stop-color="#ff7ea6"/>
+      <stop offset="75%" stop-color="#6fe0ff"/>
       <stop offset="100%" stop-color="#2f6bff"/>
     </linearGradient>
 
-    <linearGradient id="g-ring" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="rgba(140,230,255,0.55)"/>
-      <stop offset="100%" stop-color="rgba(80,150,255,0.06)"/>
+    <linearGradient id="wordGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffb86b"/>
+      <stop offset="40%" stop-color="#ff6fa1"/>
+      <stop offset="80%" stop-color="#7fe6ff"/>
     </linearGradient>
 
-    <!-- Soft blur filter for subtle glow (kept light) -->
-    <filter id="f-softglow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="b"/>
+    <!-- subtle blur -->
+    <filter id="softBlur" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="10" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- small crisp shadow -->
+    <filter id="shadowSmall" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#001" flood-opacity="0.35"/>
+    </filter>
+
+    <!-- stroke glow for neon effect -->
+    <filter id="strokeGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="blur"/>
       <feMerge>
-        <feMergeNode in="b"/>
+        <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
 
-    <!-- small drop-shadow for hex plate -->
-    <filter id="f-plate-shadow" x="-40%" y="-40%" width="180%" height="180%">
-      <feOffset dx="0" dy="8" result="off"/>
-      <feGaussianBlur in="off" stdDeviation="20" result="blur"/>
-      <feColorMatrix in="blur" type="matrix"
-        values="0 0 0 0 0
-                0 0 0 0 0
-                0 0 0 0 0
-                0 0 0 0.25"/>
-      <feBlend in="SourceGraphic" mode="normal"/>
-    </filter>
-
+    <!-- soft vignette -->
+    <radialGradient id="bgVign" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#061218" stop-opacity="0.0"/>
+      <stop offset="100%" stop-color="#03060b" stop-opacity="0.7"/>
+    </radialGradient>
   </defs>
 
-  <!-- outer gentle halo -->
-  <g opacity="0.14">
-    <circle cx="256" cy="256" r="206" fill="url(#g-ring)"/>
+  <!-- background vignette -->
+  <rect width="100%" height="100%" fill="url(#bgVign)"/>
+
+  <!-- left emblem group -->
+  <g id="emblem" transform="translate(140,150)">
+
+    <!-- faint ambient ring -->
+    <circle cx="0" cy="0" r="122" fill="none" stroke="rgba(255,140,90,0.06)" stroke-width="22"/>
+
+    <!-- hex plate -->
+    <g transform="translate(0,0)" filter="url(#shadowSmall)">
+      <polygon points="0,-96 83,-48 83,48 0,96 -83,48 -83,-48"
+               fill="url(#hexGrad)" stroke="rgba(255,255,255,0.12)" stroke-width="2.2" stroke-linejoin="round" />
+    </g>
+
+    <!-- inner soft inset -->
+    <polygon points="0,-80 70,-40 70,40 0,80 -70,40 -70,-40" fill="rgba(0,0,0,0.06)"/>
+
+    <!-- glowing core -->
+    <g id="core" filter="url(#softBlur)">
+      <circle cx="0" cy="0" r="52" fill="url(#coreGrad)" opacity="0.95"/>
+      <circle cx="0" cy="0" r="28" fill="#fff8d8" opacity="0.9">
+        <animate attributeName="r" values="26;30;26" dur="2.6s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.95;0.8;0.95" dur="2.6s" repeatCount="indefinite" />
+      </circle>
+      <circle cx="0" cy="0" r="10" fill="#ffffff" opacity="1">
+        <animate attributeName="r" values="8;12;8" dur="1.8s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <!-- orbit nodes (use group rotation for subtle motion) -->
+    <g id="orbits">
+      <animateTransform attributeName="transform" attributeType="XML" type="rotate"
+                        from="0" to="360" dur="20s" repeatCount="indefinite"/>
+      <!-- node top-right -->
+      <g transform="translate(84,-60)">
+        <circle r="6.2" fill="#ffb86b" opacity="0.98">
+          <animate attributeName="r" values="5.8;7.2;5.8" dur="4.6s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      <!-- node bottom -->
+      <g transform="translate(0,112)">
+        <circle r="6.2" fill="#ff6fa1" opacity="0.98">
+          <animate attributeName="r" values="6.2;7.6;6.2" dur="4.9s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      <!-- node left -->
+      <g transform="translate(-84,-60)">
+        <circle r="6.2" fill="#7fe6ff" opacity="0.98">
+          <animate attributeName="r" values="6.2;8;6.2" dur="5.2s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+    </g>
+
+    <!-- linking subtle lines -->
+    <g stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-linecap="round">
+      <line x1="0" y1="0" x2="84" y2="-60"/>
+      <line x1="0" y1="0" x2="0" y2="112"/>
+      <line x1="0" y1="0" x2="-84" y2="-60"/>
+    </g>
+
+    <!-- thin crisp rim -->
+    <polygon points="0,-92 79,-44 79,44 0,92 -79,44 -79,-44" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
   </g>
 
-  <!-- hexagon plate with slight stroke and shadow -->
-  <g filter="url(#f-plate-shadow)">
-    <polygon id="hex-plate"
-             points="256 72 382 146 382 366 256 440 130 366 130 146"
-             fill="url(#g-hex)"
-             stroke="rgba(255,255,255,0.16)"
-             stroke-width="3.2"
-             stroke-linejoin="round"/>
-  </g>
+  <!-- wordmark group to the right -->
+  <g id="wordmark" transform="translate(330,170)" font-family="Inter, system-ui, Arial, Helvetica, sans-serif" aria-hidden="false">
+    <!-- decorative neon glow behind word -->
+    <rect x="-40" y="-110" width="520" height="220" rx="28" fill="none" />
 
-  <!-- inner subtle inset -->
-  <polygon points="256 92 360 152 360 332 256 392 152 332 152 152"
-           fill="rgba(0,0,0,0.06)"/>
+    <!-- stylized Q as a composed group (circle + key-tail) -->
+    <g id="Q" transform="translate(0,-8)">
+      <!-- Q circle -->
+      <circle cx="0" cy="0" r="38" fill="url(#wordGlow)" filter="url(#strokeGlow)" opacity="0.96"/>
+      <circle cx="0" cy="0" r="26" fill="#05121a" opacity="0.9"/>
 
-  <!-- glowing energy core group -->
-  <g id="core" transform="translate(0,0)">
-    <!-- outer soft glow -->
-    <circle cx="256" cy="256" r="110" fill="url(#g-core)" opacity="0.35" />
-    <!-- animated core (pulsing) -->
-    <g id="core-pulse" transform="translate(256,256)">
-      <circle id="core-l1" cx="0" cy="0" r="54" fill="#8fe8ff" opacity="0.24">
-        <animate attributeName="r" values="54;62;54" dur="3.8s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.26;0.12;0.26" dur="3.8s" repeatCount="indefinite"/>
-      </circle>
+      <!-- key-slot inside Q (vertical slot + teeth) -->
+      <g transform="translate(8,-4)" fill="#ffd6b0">
+        <rect x="-4" y="-14" width="8" height="20" rx="3" />
+        <rect x="-7" y="6" width="5" height="4" rx="1" />
+        <rect x="1" y="6" width="5" height="4" rx="1" />
+      </g>
 
-      <circle id="core-l2" cx="0" cy="0" r="38" fill="#46b7ff" opacity="0.95">
-        <animateTransform attributeName="transform" attributeType="XML"
-                          type="scale" values="1;1.04;1" dur="2.6s" repeatCount="indefinite"/>
-      </circle>
+      <!-- tail that suggests a key handle & Q tail -->
+      <path d="M -18 16 L -6 24 L -2 22" stroke="#ffd6b0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <animate attributeName="stroke-opacity" values="0.9;0.45;0.9" dur="3.2s" repeatCount="indefinite"/>
+      </path>
+    </g>
 
-      <!-- bright center -->
-      <circle cx="0" cy="0" r="14" fill="#bff9ff" opacity="1">
-        <animate attributeName="r" values="12;16;12" dur="2.2s" repeatCount="indefinite"/>
-      </circle>
+    <!-- word text - "UANTUMKEY" (we leave first letter Q as drawn above) -->
+    <g transform="translate(70,-20)" font-size="48" fill="url(#wordGlow)" style="text-rendering:geometricPrecision">
+      <text x="0" y="16" font-weight="700" letter-spacing="2">UANTUMKEY</text>
+      <!-- soft inner shadow / outline -->
+      <text x="0" y="16" font-weight="700" letter-spacing="2" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="1.6">UANTUMKEY</text>
+    </g>
+
+    <!-- tagline below -->
+    <g transform="translate(24,60)" font-size="13" fill="rgba(220,235,255,0.85)">
+      <text x="0" y="0">A subtle architecture of meaning — a key that harmonizes</text>
+      <text x="0" y="18">conscious intent with machine intelligence.</text>
     </g>
   </g>
 
-  <!-- orbit group: rotate the whole group to create orbit motion for nodes -->
-  <g id="orbit-root" transform="translate(0,0)">
-    <!-- the group rotates slowly -->
-    <animateTransform attributeName="transform"
-                      type="rotate"
-                      from="0 256 256"
-                      to="360 256 256"
-                      dur="18s"
-                      repeatCount="indefinite" />
-
-    <!-- nodes placed around center (their coords define orbit radius) -->
-    <!-- Node A (top-right) -->
-    <g id="node-a" transform="translate(314,196)">
-      <circle r="7.6" fill="#bdf6ff" opacity="0.98">
-        <animate attributeName="r" values="7.6;9.2;7.6" dur="4.2s" repeatCount="indefinite"/>
-      </circle>
-      <circle r="2.6" fill="#fff" opacity="0.9" transform="translate(5,-5)"/>
-    </g>
-
-    <!-- Node B (bottom) -->
-    <g id="node-b" transform="translate(256,336)">
-      <circle r="7.6" fill="#bdf6ff" opacity="0.98">
-        <animate attributeName="r" values="7.6;8.8;7.6" dur="5.1s" repeatCount="indefinite"/>
-      </circle>
-      <circle r="2.2" fill="#fff" opacity="0.9" transform="translate(0,6)"/>
-    </g>
-
-    <!-- Node C (left) -->
-    <g id="node-c" transform="translate(198,196)">
-      <circle r="7.6" fill="#bdf6ff" opacity="0.98">
-        <animate attributeName="r" values="7.6;9.0;7.6" dur="4.6s" repeatCount="indefinite"/>
-      </circle>
-      <circle r="2.8" fill="#fff" opacity="0.9" transform="translate(-5,-4)"/>
-    </g>
-
-    <!-- faint orbit tracks -->
-    <circle cx="256" cy="256" r="132" fill="none" stroke="rgba(140,200,255,0.06)" stroke-width="2.2"/>
-    <ellipse cx="256" cy="256" rx="132" ry="80" fill="none" stroke="rgba(140,200,255,0.04)" stroke-width="1.6"/>
+  <!-- small decorative particles (background, warm neon specks) -->
+  <g opacity="0.7" fill="#ffd6b0">
+    <circle cx="60" cy="60" r="1.3" />
+    <circle cx="100" cy="32" r="1.1" />
+    <circle cx="210" cy="40" r="1.6" />
+    <circle cx="360" cy="24" r="1.2" />
+    <circle cx="540" cy="80" r="1.4" />
+    <circle cx="470" cy="200" r="1.1" />
+    <circle cx="720" cy="40" r="1.3" />
   </g>
 
-  <!-- subtle decorative lines (linking nodes to core) -->
-  <g stroke="rgba(180,230,255,0.09)" stroke-width="1.2" stroke-linecap="round">
-    <line x1="256" y1="256" x2="314" y2="196"/>
-    <line x1="256" y1="256" x2="256" y2="336"/>
-    <line x1="256" y1="256" x2="198" y2="196"/>
-  </g>
-
-  <!-- thin hex inner stroke for crisp edge -->
-  <polygon points="256 82 366 150 366 362 256 430 146 362 146 150"
-           fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.6" stroke-linejoin="round"/>
-
-  <!-- accessibility: invisible focusable rectangle (keeps image accessible) -->
-  <rect x="0" y="0" width="512" height="512" fill="transparent" />
-
+  <!-- ensure clickable accessible area -->
+  <rect x="0" y="0" width="900" height="300" fill="transparent" />
 </svg>
