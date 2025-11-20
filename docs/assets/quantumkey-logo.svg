@@ -1,123 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 1200 700"
-     width="1200" height="700"
+     viewBox="0 0 1000 1000"
+     width="1000" height="1000"
      role="img" aria-labelledby="title desc">
-  <title id="title">QuantumKey emblem — three fields and wordmark</title>
-  <desc id="desc">Three celestial bodies labeled QFT, Consciousness and GR linked by dancing arrows; decorative equations and the word QUANTUMKEY across the top.</desc>
+  <title id="title">QuantumKey emblem — circular neon badge</title>
+  <desc id="desc">Round badge with three glowing spheres (QFT, Consciousness, GR), dancing dashed arrows and bold QUANTUMKEY wordmark across the top.</desc>
 
   <defs>
-    <radialGradient id="grad-qft" cx="30%" cy="30%" r="70%">
-      <stop offset="0%" stop-color="#b8fff7"/>
-      <stop offset="45%" stop-color="#6fe6ff"/>
-      <stop offset="100%" stop-color="#2a8cff"/>
+    <!-- BRIGHTER NEON GRADIENTS -->
+    <radialGradient id="gQ" cx="30%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#e8ffff"/>
+      <stop offset="35%" stop-color="#7fe8ff"/>
+      <stop offset="100%" stop-color="#1898ff"/>
     </radialGradient>
 
-    <radialGradient id="grad-cons" cx="50%" cy="40%" r="70%">
-      <stop offset="0%" stop-color="#fff8d1"/>
-      <stop offset="45%" stop-color="#ffb86b"/>
-      <stop offset="100%" stop-color="#ff6f9e"/>
+    <radialGradient id="gC" cx="50%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#fff2d9"/>
+      <stop offset="30%" stop-color="#ffd07a"/>
+      <stop offset="100%" stop-color="#ff5f8d"/>
     </radialGradient>
 
-    <radialGradient id="grad-gr" cx="70%" cy="60%" r="70%">
-      <stop offset="0%" stop-color="#fff4d9"/>
-      <stop offset="45%" stop-color="#ffd36a"/>
-      <stop offset="100%" stop-color="#f07f2d"/>
+    <radialGradient id="gR" cx="70%" cy="60%" r="60%">
+      <stop offset="0%" stop-color="#fff7e8"/>
+      <stop offset="35%" stop-color="#ffd67a"/>
+      <stop offset="100%" stop-color="#ff8c2c"/>
     </radialGradient>
 
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="8" result="b"/>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
 
-    <style type="text/css"><![CDATA[
-      .arrow { fill:none; stroke:#bfefff; stroke-width:3.2; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray: 12 10; opacity:0.95; }
-      .arrow-warm { stroke:#ffd8a8; opacity:0.95; }
-      .label { font-family: Inter, system-ui, Arial, Helvetica, sans-serif; font-weight:700; }
-      .subtitle { font-family: Inter, system-ui, Arial, Helvetica, sans-serif; font-weight:600; fill:rgba(230,240,255,0.9);}
-      /* animate dash offset using CSS (safe) */
-      @keyframes dash-move { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -600; } }
-      @keyframes dash-move-slow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -900; } }
-      #p1 { animation: dash-move 6s linear infinite; }
-      #p2 { animation: dash-move 5.2s linear infinite; }
-      #p3 { animation: dash-move-slow 7s linear infinite; }
-      /* subtle logo highlight */
-      .plate { filter: url(#glow); opacity: 0.98; }
+    <style><![CDATA[
+      .wordmark { font-family: 'Inter', system-ui, Arial, sans-serif; font-weight:800; fill:#e8fbff; letter-spacing:6px; }
+      .tag { font-family: 'Inter', system-ui, Arial, sans-serif; font-size:13px; fill:rgba(220,240,255,0.78); }
+      .label { font-family: 'Inter', system-ui, Arial, sans-serif; font-weight:700; fill:#042028; }
+      .sub { font-family: 'Inter', system-ui, Arial, sans-serif; font-size:12px; fill:rgba(10,20,30,0.85); }
+      .dash { fill:none; stroke:#bfefff; stroke-width:4; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:14 10; opacity:0.95; }
+      .dash-warm { fill:none; stroke:#ffd7a8; stroke-width:4.6; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:12 8; opacity:0.98; }
+      /* CSS dash animation (safe for GitHub preview) */
+      @keyframes dashA { from { stroke-dashoffset: 0 } to { stroke-dashoffset: -800 } }
+      @keyframes dashB { from { stroke-dashoffset: 0 } to { stroke-dashoffset: -600 } }
+      #pathA { animation: dashA 6.6s linear infinite; }
+      #pathB { animation: dashB 5.2s linear infinite; }
+      #pathC { animation: dashA 7.2s linear infinite; }
+
+      /* circular mask ensures round image */
+      .clipCircle { r: 480; cx:500; cy:500; }
     ]]></style>
   </defs>
 
-  <!-- background -->
-  <rect width="100%" height="100%" fill="#041018"/>
-  <g opacity="0.12">
-    <circle cx="160" cy="140" r="180" fill="#0a2b33"/>
-    <circle cx="1020" cy="520" r="200" fill="#0b1a2f"/>
+  <!-- circular background (badge) -->
+  <g transform="translate(0,0)">
+    <rect width="100%" height="100%" fill="#02131a"/>
+    <!-- subtle concentric vignette -->
+    <radialGradient id="vign" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="rgba(6,18,22,0.0)"/>
+      <stop offset="100%" stop-color="rgba(2,8,12,0.7)"/>
+    </radialGradient>
+    <rect width="100%" height="100%" fill="url(#vign)"/>
   </g>
 
-  <!-- header wordmark -->
-  <g transform="translate(600,70)" text-anchor="middle" aria-hidden="false">
-    <text x="0" y="0" font-size="48" font-family="Inter, system-ui, Arial" font-weight="800" fill="#dff7ff" letter-spacing="6">QUANTUMKEY</text>
-    <text x="0" y="30" font-size="13" fill="rgba(200,220,235,0.65)" font-family="Inter, system-ui, Arial">
-      a subtle architecture of meaning — states, operators, and the bridge between them
-    </text>
-  </g>
+  <!-- circular clipping group to enforce round badge -->
+  <g clip-path="circle(480 at 500 500)">
+    <!-- large soft glow rings behind content -->
+    <g filter="url(#softGlow)" opacity="0.9">
+      <circle cx="500" cy="500" r="420" fill="rgba(12,28,36,0.14)"/>
+      <circle cx="500" cy="500" r="360" fill="rgba(6,18,22,0.06)"/>
+    </g>
 
-  <!-- celestial bodies -->
-  <g id="g-qft" transform="translate(220,300)">
-    <circle cx="0" cy="0" r="110" fill="url(#grad-qft)" class="plate"/>
-    <circle cx="-8" cy="-6" r="4" fill="#ffffff" opacity="0.95"/>
-    <text x="0" y="8" class="label" font-size="34" text-anchor="middle" fill="#04273a">QFT</text>
-    <text x="0" y="44" font-size="12" text-anchor="middle" fill="rgba(10,30,40,0.85)">fields • possibility</text>
-  </g>
+    <!-- header: wordmark centered near top -->
+    <g transform="translate(500,150)" text-anchor="middle" aria-hidden="false">
+      <text class="wordmark" x="0" y="0" font-size="54">QUANTUMKEY</text>
+      <text class="tag" x="0" y="30">a subtle architecture of meaning — states, operators, and the bridge</text>
+    </g>
 
-  <g id="g-cons" transform="translate(650,170)">
-    <circle cx="0" cy="0" r="120" fill="url(#grad-cons)" class="plate"/>
-    <circle cx="-18" cy="-22" r="3.8" fill="#ffffff" opacity="0.95"/>
-    <text x="0" y="12" class="label" font-size="28" text-anchor="middle" fill="#2a1020">Consciousness</text>
-    <text x="0" y="36" font-size="12" text-anchor="middle" fill="rgba(30,18,22,0.85)">awareness • integration</text>
-  </g>
+    <!-- left sphere: QFT -->
+    <g transform="translate(260,420)">
+      <circle cx="0" cy="0" r="110" fill="url(#gQ)" filter="url(#softGlow)"/>
+      <circle cx="-8" cy="-6" r="4.2" fill="#ffffff" opacity="0.98"/>
+      <text class="label" x="0" y="8" font-size="36" text-anchor="middle">QFT</text>
+      <text class="sub" x="0" y="40" text-anchor="middle">fields • possibility</text>
+    </g>
 
-  <g id="g-gr" transform="translate(880,430)">
-    <circle cx="0" cy="0" r="95" fill="url(#grad-gr)" class="plate"/>
-    <circle cx="12" cy="8" r="3.4" fill="#ffffff" opacity="0.95"/>
-    <text x="0" y="8" class="label" font-size="30" text-anchor="middle" fill="#2b1410">GR</text>
-    <text x="0" y="32" font-size="12" text-anchor="middle" fill="rgba(30,20,18,0.86)">structure • anchor</text>
-  </g>
+    <!-- top sphere: Consciousness -->
+    <g transform="translate(520,260)">
+      <circle cx="0" cy="0" r="125" fill="url(#gC)" filter="url(#softGlow)"/>
+      <circle cx="-14" cy="-18" r="4" fill="#ffffff" opacity="0.96"/>
+      <text class="label" x="0" y="12" font-size="28" text-anchor="middle">Consciousness</text>
+      <text class="sub" x="0" y="36" text-anchor="middle">awareness • integration</text>
+    </g>
 
-  <!-- dancing arrows (dash only) -->
-  <path id="p1" d="M320,310 C420,220 520,200 600,230" class="arrow"/>
-  <path d="M592,228 L602,234 L592,240" class="arrow" fill="none" stroke="#bfefff" stroke-width="3" stroke-linejoin="round" />
+    <!-- right-bottom sphere: GR -->
+    <g transform="translate(760,520)">
+      <circle cx="0" cy="0" r="95" fill="url(#gR)" filter="url(#softGlow)"/>
+      <circle cx="10" cy="8" r="3.6" fill="#ffffff" opacity="0.96"/>
+      <text class="label" x="0" y="8" font-size="30" text-anchor="middle">GR</text>
+      <text class="sub" x="0" y="34" text-anchor="middle">structure • anchor</text>
+    </g>
 
-  <path id="p2" d="M710,270 C780,320 820,360 860,400" class="arrow arrow-warm"/>
-  <path d="M860,400 L852,392 L868,392" class="arrow arrow-warm" fill="none" stroke="#ffd8a8" stroke-width="3"/>
+    <!-- dashed animated arrows (no SMIL) -->
+    <path id="pathA" class="dash" d="M340,420 C420,360 500,300 520,280" stroke-linecap="round"/>
+    <path class="dash" d="M520,280 L512,288 L524,292" stroke-width="4" />
 
-  <path id="p3" d="M800,470 C640,470 480,420 340,360" class="arrow" />
-  <path d="M340,360 L350,354 L338,352" class="arrow" fill="none" stroke="#bfefff" stroke-width="3"/>
+    <path id="pathB" class="dash-warm" d="M560,320 C660,380 720,430 750,480" stroke-linecap="round"/>
+    <path class="dash-warm" d="M750,480 L742,472 L758,472" stroke-width="4"/>
 
-  <!-- small static decorative "particles" -->
-  <g fill="#dff7ff" opacity="0.85">
-    <circle cx="520" cy="120" r="1.8"/>
-    <circle cx="700" cy="90" r="1.4"/>
-    <circle cx="760" cy="250" r="1.6"/>
-    <circle cx="430" cy="400" r="1.2"/>
-    <circle cx="980" cy="520" r="1.6"/>
-    <circle cx="160" cy="360" r="1.3"/>
-  </g>
+    <path id="pathC" class="dash" d="M740,510 C620,520 520,490 380,460" stroke-linecap="round"/>
+    <path class="dash" d="M380,460 L392,456 L378,450" stroke-width="4"/>
 
-  <!-- poetic equations -->
-  <g transform="translate(360,520)" fill="rgba(220,230,240,0.95)" font-family="Inter, system-ui, Arial">
-    <text x="0" y="0" font-size="28" font-weight="700" text-anchor="start">(α) Φ = 1</text>
-    <text x="0" y="36" font-size="18" text-anchor="start">☐ + Λ → p  ≈  ½ Σ(Ψ, g)</text>
-  </g>
+    <!-- decorative particles -->
+    <g fill="#c8f3ff" opacity="0.9">
+      <circle cx="420" cy="120" r="1.8"/>
+      <circle cx="680" cy="90" r="1.6"/>
+      <circle cx="780" cy="240" r="1.4"/>
+      <circle cx="360" cy="520" r="1.2"/>
+      <circle cx="920" cy="640" r="1.6"/>
+      <circle cx="160" cy="360" r="1.3"/>
+    </g>
 
-  <!-- subtle linking strokes -->
-  <g stroke="rgba(255,255,255,0.04)" stroke-width="18" stroke-linecap="round">
-    <path d="M220,300 C350,260 560,220 650,170" />
-    <path d="M650,170 C760,260 840,340 880,430" />
-    <path d="M880,430 C740,420 520,380 340,360" />
-  </g>
+    <!-- poetic equations placed lower center -->
+    <g transform="translate(360,760)" fill="rgba(230,240,255,0.95)" font-family="Inter, system-ui, Arial">
+      <text x="0" y="0" font-size="28" font-weight="700">(α) Φ = 1</text>
+      <text x="0" y="36" font-size="18">☐ + Λ → p  ≈  ½ Σ(Ψ, g)</text>
+    </g>
 
-  <!-- footer small signature -->
-  <g transform="translate(600,660)" text-anchor="middle" fill="rgba(200,220,235,0.6)">
-    <text x="0" y="0" font-family="Inter, system-ui, Arial" font-size="12">QuantumKey — interlinked fields, operators as motion, equations as portals</text>
+    <!-- subtle structural strokes to unify composition -->
+    <g stroke="rgba(255,255,255,0.03)" stroke-width="24" stroke-linecap="round">
+      <path d="M260,420 C380,360 520,320 520,280"/>
+      <path d="M520,280 C630,360 720,450 760,520"/>
+      <path d="M760,520 C620,504 520,490 380,460"/>
+    </g>
+
+    <!-- small signature -->
+    <g transform="translate(500,930)" text-anchor="middle" fill="rgba(200,220,235,0.6)" font-family="Inter, system-ui, Arial" font-size="12">
+      <text x="0" y="0">QuantumKey — interlinked fields, operators as motion, equations as portals</text>
+    </g>
   </g>
 </svg>
