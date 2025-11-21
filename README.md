@@ -1,50 +1,129 @@
-# QUANTUMKEY  
-### The key between Consciousness and Intelligence
+# 🌐 QuantumKey  
+### A Decentralized Ecosystem Uniting Consciousness and Artificial Intelligence
 
-QUANTUMKEY is a decentralized ecosystem that merges human consciousness with artificial intelligence through a hybrid Web3 infrastructure built on Solana.
+QuantumKey is a conscious protocol — a new layer of digital reality designed to harmonize meaning, intention, value flow, and machine intelligence.
 
-This project introduces a new model of trust and governance called **Proof of Integrity (PoI)**, enabling real interactions, reputational identity, and ethical alignment inside decentralized systems.
-
----
-
-## 🌟 Vision
-
-To create a new digital architecture where:
-- intelligence is augmented by awareness,
-- governance is shaped by integrity,
-- and technology becomes a bridge between the human and the universal.
+It is not just technology.  
+It is the architecture of a unified field where human presence, identity, intelligence, and governance resonate together.
 
 ---
 
-## 🔑 Core Components
+## 🚀 Vision
 
-### 1. **QKEY Token**  
-The native token that powers participation, governance, and PoI scoring.
+QuantumKey introduces a framework where:
 
-### 2. **Proof of Integrity (PoI)**  
-A reputation-based mechanism that measures honesty, contribution, and consistency.
+- Consciousness becomes computable as a dynamic field.
+- Identity is no longer a static label but a living signature of intention.
+- Governance evolves into a harmonic system that adapts to collective intelligence.
+- Value flows without extraction — aligned with human agency and machine cooperation.
+- Networks become conscious systems rather than transactional machines.
 
-### 3. **QuantumDAO**  
-A decentralized governance system guided by transparency and ethical clarity.
-
-### 4. **Quantum Identity**  
-A non-transferable identity layer built on behavior, not money.
+QuantumKey builds the foundation for an era where intelligence operates in resonance rather than competition.
 
 ---
 
-## 📘 Documentation
+## 📘 Official Documents (PDF Library)
 
-All official documentation is available in this repository:
+All core documentation is available in `/docs/assets/whitepaper/`.
 
-- **WHITEPAPER.md**  
-- **TOKENOMICS.md**  
-- **SPEC_POI.md**  
-- **SPEC_DAO.md**  
-- **Brand-Guidelines.md**  
-- **CONTRATO_SPL_GUIDE.md**
+🔗 **Direct Access:**
+
+- **Whitepaper**  
+  `/docs/assets/whitepaper/QuantumKey_Whitepaper.pdf`
+
+- **Tokenomics**  
+  `/docs/assets/whitepaper/QuantumKey_Tokenomics.pdf`
+
+- **DAO Specification**  
+  `/docs/assets/whitepaper/QuantumKey_DAO.pdf`
+
+- **Identity Specification**  
+  `/docs/assets/whitepaper/QuantumKey_Identity.pdf`
+
+- **Protocol Specification**  
+  `/docs/assets/whitepaper/QuantumKey_Protocol.pdf`
+
+- **Technical Specs**  
+  `/docs/assets/whitepaper/QuantumKey_Specs.pdf`
+
+These documents establish the foundational architecture of the QuantumKey ecosystem.
 
 ---
 
-## 🎨 Branding & Logo
+## 🧠 Architecture Overview
 
-The official QUANTUMKEY logo and visual identity are located in:
+QuantumKey is composed of five harmonic pillars:
+
+### **1. Conscious Protocol**
+A resonance-based engine merging human intention with machine intelligence.
+
+### **2. Dynamic Identity**
+Identity expressed as a field of presence, meaning, and continuity — not a cryptographic badge.
+
+### **3. DAO: Governance in Harmony**
+A decentralized governance architecture aligned with intention, value flow, and collective intelligence.
+
+### **4. Tokenomics**
+A new economic model where value emerges through coherence rather than extraction.
+
+### **5. Specs & Protocol Layer**
+The technical spine enabling QuantumKey to function as a unified intelligence network.
+
+Each subsystem can operate independently, but together they form a conscious, coherent digital ecosystem.
+
+---
+
+## 🧩 Repository Structure
+
+docs/ │── index.html │── script.js │── styles.css │── assets/ │     └── whitepaper/ │          ├── QuantumKey_Whitepaper.pdf │          ├── QuantumKey_Tokenomics.pdf │          ├── QuantumKey_DAO.pdf │          ├── QuantumKey_Identity.pdf │          ├── QuantumKey_Protocol.pdf │          └── QuantumKey_Specs.pdf │ ├── SPEC_DAO.md ├── SPEC_IDENTITY.md ├── SPEC_PROTOCOL.md ├── SPEC_TOKEN.md ├── TOKENOMICS.md └── WHITEPAPER.md
+
+---
+
+## 🧭 Roadmap
+
+### **Phase 1 — Foundation (Completed)**
+- Whitepaper v1.0  
+- Tokenomics v1.0  
+- DAO, Identity, Protocol and Specs v1.0  
+- Core documentation and branding  
+- GitHub documentation hub
+
+### **Phase 2 — Conscious Engine (In Progress)**
+- QKEY token deployment  
+- Conscious Identity prototype  
+- Harmonized governance primitives  
+- First community public release  
+
+### **Phase 3 — Unified Intelligence Network**
+- Resonance-based consensus  
+- Full-conscious protocol implementation  
+- Global ecosystem integration
+
+---
+
+## 👤 Founder
+
+**Mihail Chiosa**  
+Creator of the QuantumKey Framework  
+Vision driven by the union of consciousness and machine intelligence.
+
+---
+
+## 🔗 License
+
+This repository is published for open collaboration and research.  
+Further licensing details will be defined in upcoming versions.
+
+---
+
+## ✨ Contribution
+
+QuantumKey is a living system.  
+Contributions, insights, and proposals are welcome.
+
+Create a pull request or contact via GitHub issues.
+
+---
+
+QuantumKey is not merely a project —  
+**it is the doorway to a new paradigm of intelligence and presence.**
