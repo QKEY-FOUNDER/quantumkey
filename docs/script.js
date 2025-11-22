@@ -263,3 +263,28 @@
   // ---- DEBUG ----
   console.log('QuantumKey visual engine loaded (enhanced script)');
 })();
+// script.js — pequeno utilitário
+document.addEventListener('DOMContentLoaded', () => {
+  const hh = document.querySelector('.hamburger');
+  if(hh){
+    hh.addEventListener('click', ()=>{
+      document.body.classList.toggle('menu-open');
+      // abre/fecha menu — podes criar painel mais tarde
+    });
+  }
+
+  // pequenas melhorias: se o poster for muito alto, garantir que cabe
+  const poster = document.querySelector('.hero-preview');
+  if(poster){
+    poster.style.maxHeight = (window.innerHeight * 0.58) + 'px';
+  }
+
+  // anima label quando tocar (apenas visual)
+  const labels = document.querySelectorAll('.orbit-label');
+  labels.forEach(l => {
+    l.addEventListener('touchstart', ()=> {
+      l.style.transform = 'scale(1.06)';
+      setTimeout(()=> l.style.transform = '', 300);
+    });
+  });
+});
