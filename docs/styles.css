@@ -1,58 +1,121 @@
-/* --- Orbital labels (adicionar no fim do styles.css) --- */
-#orbit-wrap {
+/* =========================
+   QKEY — Base reset + critical styles
+   Cole isto no topo de docs/styles.css
+   ========================= */
+
+:root{
+  --bg:#07121a;
+  --fg:#e8fbff;
+  --muted: rgba(200,220,230,0.6);
+  --accent-grad: linear-gradient(90deg,#5fe6ff 0%,#b66dff 100%);
+  --card-bg: rgba(3,8,12,0.56);
+  --shadow-strong: 0 12px 30px rgba(1,6,10,0.6);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;width:100%}
+body{
+  background:var(--bg);
+  color:var(--fg);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+  -webkit-text-size-adjust:100%;
+}
+
+/* Basic content container */
+.container{
+  width: min(1100px, 94%);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* header */
+.site-header{
   position: fixed;
-  width: 0;
-  height: 0;
-  left: 50%;
-  top: 50%;
-  pointer-events: none;
-  z-index: 40; /* acima do poster, abaixo do header (header z-index > 40) */
-  transform: translate(-50%,-50%);
+  left:0; right:0; top:0;
+  height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 1rem;
+  background: linear-gradient(180deg, rgba(3,8,12,0.12), rgba(3,8,12,0.02));
+  backdrop-filter: blur(6px);
+  z-index: 120;
+  border-bottom: 1px solid rgba(255,255,255,0.02);
 }
 
-.orbit-label {
-  position: absolute;
-  left: 0;
-  top: 0;
-  transform-origin: 0 50%;
-  will-change: transform;
-  pointer-events: auto; /* allow tapping the labels */
+/* brand */
+.brand-link{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--fg)}
+.brand-logo{width:56px;height:56px;object-fit:contain;border-radius:6px}
+.brand-name{font-weight:800;letter-spacing:2px;font-size:18px;color:var(--fg);display:none}
+
+/* header nav in desktop (hidden on mobile via media query below) */
+.header-actions{display:flex;align-items:center;gap:18px}
+
+/* simple hamburger */
+.menu-btn {
+  width:46px;height:46px;border-radius:8px;border:0;background:transparent;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.menu-icon{
+  width:28px;height:18px;display:block;position:relative;
+}
+.menu-icon::before,.menu-icon::after,.menu-icon div{content:'';position:absolute;left:0;right:0;height:3px;background:linear-gradient(90deg,#5fe6ff,#b66dff);border-radius:3px}
+.menu-icon::before{top:0}
+.menu-icon div{top:7.8px}
+.menu-icon::after{bottom:0}
+
+/* hero / poster area */
+.hero{
+  padding-top:110px; /* leave space for fixed header */
+  padding-bottom:36px;
+  text-align:center;
+}
+.poster-card{
+  width: min(640px, 92%);
+  margin: 22px auto 28px;
+  border-radius:20px;
+  background: linear-gradient(180deg, rgba(6,12,16,0.22), rgba(6,12,16,0.06));
+  padding:18px;
+  box-shadow: var(--shadow-strong);
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-/* badge-style for each label */
-.orbit-label-inner {
-  display: inline-block;
-  padding: 8px 14px;
-  border-radius: 16px;
-  background: rgba(3, 8, 12, 0.62);
-  color: #e8fbff;
-  font-weight: 700;
-  font-family: Inter, system-ui, Arial, sans-serif;
-  font-size: 14px;
-  box-shadow: 0 8px 20px rgba(1,6,10,0.45), inset 0 -2px 6px rgba(255,255,255,0.02);
-  pointer-events: auto;
-  white-space: nowrap;
-  user-select: none;
-  transform-origin: center center;
+/* poster image (allow inline svg or img) */
+.poster-img, .poster-card img {
+  max-width:100%;
+  height:auto;
+  display:block;
+  border-radius:10px;
 }
 
-/* small visual glow optionally */
-.orbit-label-inner::after {
-  content: '';
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.06);
-  left: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
+/* hero heading */
+.hero h1{font-size:48px;line-height:1;font-weight:900;margin-top:6px;color:var(--fg);letter-spacing:0.6px}
+.hero p{max-width:760px;margin:18px auto;color:var(--muted);font-size:18px;padding:0 10px}
+
+/* CTA buttons under hero */
+.hero-ctas{display:flex;gap:18px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.cta{min-height:48px;padding:12px 20px;border-radius:14px;background:var(--card-bg);color:var(--fg);font-weight:800;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.cta.gradient{background:var(--accent-grad); color:#031216; box-shadow: 0 8px 30px rgba(91,48,180,0.14)}
+
+/* Documentation section typography */
+.docs-title{font-size:28px;font-weight:800;margin-top:8px;color:var(--fg)}
+.docs-desc{color:var(--muted);margin:6px 0 18px}
+
+/* links reset */
+a{color:var(--accent-grad);text-decoration:underline}
+
+/* small responsive adjustments */
+@media(min-width:900px){
+  .brand-name{display:inline-block}
+  .brand-logo{width:92px;height:46px}
+  .hero h1{font-size:72px}
+  .site-header{height:92px;padding:0 2rem}
 }
 
-/* ensure header stays above */
-.site-header { z-index: 60; position: relative; }
-
-/* avoid labels interfering with pointer events of page (except the labels themselves) */
-#orbit-wrap { pointer-events: none; }
-#orbit-wrap .orbit-label { pointer-events: auto; }
+/* ensure no default list bullets show if menu uses ul */
+ul{list-style:none;padding:0;margin:0}
