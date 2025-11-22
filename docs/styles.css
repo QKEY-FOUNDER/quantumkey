@@ -1,315 +1,168 @@
-/* ------------------------------------------------------------------
-   QuantumKey — styles.css
-   Full stylesheet: header, hero, cards, footer, responsive.
-   Paste as the project's docs/styles.css (replace existing content).
-   ------------------------------------------------------------------ */
+/* ==========================================================
+   QUANTUMKEY — Reset + Base
+   ========================================================== */
+* { box-sizing: border-box; margin:0; padding:0; }
+html,body { height:100%; width:100%; background:#030b10; color:#eaf8ff; font-family:Inter, system-ui, Arial, sans-serif; -webkit-font-smoothing:antialiased; }
 
-/* ---------- variables ---------- */
-:root{
-  --bg-900: #051017;
-  --bg-800: #07161a;
-  --card-bg: rgba(6,18,22,0.55);
-  --glass: rgba(255,255,255,0.03);
-  --accent-1: #64e0ff;
-  --accent-2: #8a6bff;
-  --text-main: #E7F7FF;
-  --muted: #9fb9c4;
-  --glass-2: rgba(10,22,28,0.45);
-  --radius-lg: 22px;
-  --shadow-1: 0 12px 36px rgba(2,8,12,0.6);
-  --max-width: 1100px;
-  --container-pad: 22px;
-  --transition-fast: 180ms cubic-bezier(.2,.9,.3,1);
-  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+/* Contêiner geral para proteger do overflow do SVG */
+.site-hero-wrapper {
+  width:100%;
+  overflow:hidden;          /* evita que o SVG "empurre" a página */
+  padding-top: 8px;         /* reduz o espaço superior */
+  padding-bottom: 8px;
 }
 
-/* ---------- base ---------- */
-* { box-sizing: border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-html,body { height:100%; }
-body{
-  margin:0;
-  font-family: var(--font-sans);
-  background: radial-gradient(1200px 600px at 10% 10%, rgba(8,28,36,0.35), transparent 8%),
-              linear-gradient(180deg,#041019 0%, #061621 50%, #041019 100%);
-  color: var(--text-main);
-  line-height:1.45;
-  -webkit-touch-callout:none;
-  overflow-x:hidden;
-}
+/* ==========================================================
+   Header / Wordmark / Nav
+   ========================================================== */
 
-/* container */
-.container{
-  width: calc(100% - 2*var(--container-pad));
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 var(--container-pad);
-}
-
-/* ---------- header ---------- */
-.site-header{
-  position: sticky;
-  top:0;
-  z-index:50;
-  background: linear-gradient(180deg, rgba(2,8,12,0.55) 0%, rgba(2,8,12,0.12) 90%);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255,255,255,0.02);
-}
-
-/* header container */
-.site-header .container{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:14px var(--container-pad);
-}
-
-/* brand area (left) */
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  min-width:0;
-}
-
-/* small icon logo inside header */
-.brand-logo{
-  width:46px;
-  height:46px;
-  object-fit:contain;
-  display:block;
-  flex:0 0 46px;
-  border-radius:10px;
-  box-shadow: 0 6px 20px rgba(6,28,42,0.45);
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005));
-  padding:6px;
-}
-
-/* brand name */
-.brand-name{
+/* se o wordmark for um <a> ou .site-title */
+.site-title, .brand, a.site-title, .wordmark {
   display:inline-block;
-  font-weight:900;
-  font-size:18px;
-  letter-spacing:1.6px;
-  text-transform:uppercase;
-  color: var(--text-main);
-  white-space:nowrap;
-  max-width:60vw;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  color: #e8fbff !important;    /* força cor adequada */
+  text-decoration: none !important;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin-left: 12px;
 }
 
-/* nav and menu */
-.nav{
-  display:flex;
-  gap:18px;
-  align-items:center;
-  justify-content:flex-end;
-}
-
-/* header links default */
-.nav a{
-  color:var(--muted);
-  text-decoration:none;
-  font-weight:700;
-  padding:8px 12px;
-  border-radius:12px;
-  transition: var(--transition-fast);
-  font-size:15px;
-}
-
-/* primary header link styles (if used inline) */
-.button-primary{
-  background: linear-gradient(90deg,var(--accent-1), var(--accent-2));
-  color: #04202a;
-  font-weight:800;
-  padding:8px 14px;
-  border-radius:18px;
-  text-decoration:none;
-  display:inline-block;
-  box-shadow: 0 8px 28px rgba(100,160,255,0.08);
-}
-.button-secondary{
-  background: transparent;
-  color:var(--muted);
-  border-radius:14px;
-  padding:8px 12px;
-  border: 1px solid rgba(255,255,255,0.02);
-}
-
-/* menu toggle for mobile (button element) */
-.menu-toggle{
-  display:none; /* shown via media queries */
+/* menu hamburger (fallback selectors) */
+.hamburger, .menu-toggle, .nav-toggle {
+  display:inline-flex;
   align-items:center;
   justify-content:center;
-  width:44px;
-  height:44px;
-  border-radius:10px;
-  background: rgba(6,18,22,0.42);
-  color: var(--accent-1);
-  border: none;
-  cursor:pointer;
-  font-size:18px;
-  box-shadow: 0 6px 18px rgba(2,8,12,0.6);
+  width:40px;
+  height:40px;
+  border-radius:8px;
+  background: rgba(255,255,255,0.06);
+  color: #eaf8ff;
+  border: 1px solid rgba(255,255,255,0.04);
+  margin-left: 6px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.5);
 }
 
-/* hide nav visually on small unless toggled */
-.nav[aria-hidden="true"] { display:none; }
-
-/* ---------- hero ---------- */
-.hero{
-  padding:32px 0 36px 0;
-  position:relative;
-  overflow:visible;
-}
-
-/* hero card / plate behind the logo (glass) */
-.hero-card{
+/* container do header - fixa alinhamento */
+.header-row, .topbar {
   display:flex;
   align-items:center;
-  gap:28px;
-  justify-content:center;
+  gap:8px;
+  padding:10px 14px;
+}
+
+/* ==========================================================
+   Hero (logo + title + buttons) — contêiner centralizado
+   ========================================================== */
+
+.hero-card, .hero, #hero {
+  width:100%;
+  max-width:980px;
+  margin: 6px auto 18px;   /* top muito reduzido */
+  padding: 12px;
+  display:flex;
   flex-direction:column;
-  padding-top:8px;
-}
-
-/* big rounded plate for logo */
-.logo-plate{
-  width: 280px;
-  height: 280px;
-  border-radius: 28px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.05));
-  box-shadow: var(--shadow-1);
-  display:flex;
   align-items:center;
-  justify-content:center;
-  transform: translateZ(0);
-  position:relative;
-  overflow:hidden;
-}
-
-/* hero logo inside the plate (external SVG) */
-.hero-logo{
-  width: 44%;
-  height:auto;
-  display:block;
-  filter: drop-shadow(0 12px 30px rgba(6,30,42,0.55));
-}
-
-/* tagline and title */
-.hero-text{ text-align:center; max-width:760px; margin-top:18px; }
-.hero-text h1{
-  margin:14px 0 8px;
-  font-size:54px;
-  line-height:1.02;
-  letter-spacing:-1px;
-  color:var(--text-main);
-  font-weight:900;
-  text-wrap:balance;
-}
-.tagline{
-  color:var(--muted);
-  font-size:18px;
-  margin:0 auto 18px;
-  max-width:840px;
-}
-
-/* CTA row */
-.cta-row{ display:flex; gap:16px; justify-content:center; margin-top:8px; }
-.btn{
-  display:inline-block;
-  padding:16px 36px;
-  border-radius:36px;
-  text-decoration:none;
-  font-weight:800;
-  font-size:16px;
-  transition:transform .18s ease, box-shadow .18s ease;
-  border: none;
-}
-.btn-primary{
-  background: linear-gradient(90deg,var(--accent-1), var(--accent-2));
-  color:#021b21;
-  box-shadow: 0 14px 46px rgba(110,160,255,0.12);
-}
-.btn-outline{
-  background: rgba(255,255,255,0.02);
-  color: var(--muted);
-  border: 1px solid rgba(255,255,255,0.03);
-}
-
-/* ---------- cards (Identity / Governance / Token) ---------- */
-.cards{
-  display:grid;
-  grid-template-columns: repeat(3,1fr);
-  gap:22px;
-  margin:38px auto 68px;
-}
-.card{
-  background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.008));
-  border-radius:18px;
-  padding:20px;
-  box-shadow: 0 10px 30px rgba(2,8,12,0.6);
-}
-.card h3{
-  margin:0 0 8px;
-  font-size:20px;
-  color:var(--text-main);
-}
-.card p{ color:var(--muted); margin:0; }
-
-/* ---------- footer ---------- */
-.site-footer{
-  padding:40px 0 80px;
-  color:var(--muted);
   text-align:center;
-  border-top: 1px solid rgba(255,255,255,0.02);
-  margin-top:18px;
+  gap:14px;
 }
 
-/* ---------- small screens ---------- */
-@media (max-width:980px){
-  .hero-text h1{ font-size:44px; }
-  .logo-plate{ width:240px; height:240px; }
-  .cards{ grid-template-columns: repeat(2,1fr); gap:16px; margin:28px auto 52px; }
+/* forçando o SVG a comportar-se */
+.hero-logo, .hero-svg, .logo-img, .badge-preview, svg.hero-svg {
+  display:block;
+  width: 100%;
+  max-width: 420px;        /* limite máximo em desktop */
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  margin: 0 auto;
+  transition: transform .18s ease, max-width .18s ease;
+  pointer-events: none;    /* evita que toque faça zoom estranho */
 }
 
-@media (max-width:640px){
-  .site-header .container{ padding:12px 14px; }
-  .brand-name{ font-size:15px; max-width:44vw; }
-  .hero-text h1{ font-size:34px; margin-top:14px; }
-  .tagline{ font-size:15px; padding:0 12px; }
-  .logo-plate{ width:200px; height:200px; border-radius:20px; }
-  .hero-logo{ width:46%; }
-  .cards{ grid-template-columns: 1fr; margin:22px 0 42px; }
-  .cta-row{ flex-direction:column; gap:12px; }
-  .btn{ width: min(84%, 320px); margin:0 auto; padding:14px 26px; }
-  .menu-toggle{ display:inline-flex; }
-  .nav{ display:none; } /* toggled via script */
+/* se o SVG estiver inline com id ou classe diferente */
+svg { max-width: 100%; height: auto; display:block; }
+
+/* Título e subtítulo */
+.hero-title { font-size:44px; font-weight:800; letter-spacing:1px; line-height:1.02; }
+.hero-subtitle { max-width:720px; color:#cde8f6; font-size:15px; }
+
+/* botões */
+.btn-row { display:flex; gap:14px; margin-top:6px; flex-wrap:wrap; justify-content:center; }
+.btn { padding:12px 20px; border-radius:12px; border:none; font-weight:700; cursor:pointer; color:#001f26;
+      background: linear-gradient(135deg,#4bfaff,#9d4bff); box-shadow:0 8px 30px rgba(60,140,200,0.12); }
+
+/* ==========================================================
+   Documentation cards
+   ========================================================== */
+
+.docs-section { max-width:960px; margin:28px auto; padding: 0 14px; }
+.doc-card { background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04); padding:20px; margin-bottom:18px; border-radius:12px; }
+.doc-card-title { font-weight:800; font-size:18px; }
+.doc-card-desc { color:#cde8f6; margin-top:6px; }
+
+/* ==========================================================
+   Footer
+   ========================================================== */
+
+.footer { margin:28px auto 48px; max-width:980px; padding:0 14px; color:#cfeff6; font-size:13px; }
+
+/* ==========================================================
+   RESPONSIVO: Mobile tweaks
+   ========================================================== */
+
+@media (max-width: 860px) {
+
+  .hero-card { margin-top: 6px; margin-bottom: 12px; padding: 10px; gap:12px; }
+
+  /* logo bem menor no telemóvel para não dominar a viewport */
+  .hero-logo, .hero-svg, .logo-img, svg.hero-svg {
+    max-width: 220px !important;
+    max-height: 220px !important;
+    width: 52vw !important;
+    height: auto !important;
+    transform: translateY(0);
+    filter: drop-shadow(0 6px 20px rgba(0,160,220,0.12));
+  }
+
+  .hero-title { font-size: 28px; line-height:1.05; }
+  .hero-subtitle { font-size:14px; max-width:360px; }
+
+  /* faz os botões em coluna para caber */
+  .btn-row { flex-direction:column; width:90%; max-width:320px; margin:0 auto; }
+  .btn { width:100%; text-align:center; }
+
+  /* corrige o wordmark azul (link) que aparece no topo */
+  a, a:link, a:visited { color: inherit; text-decoration: none; }
+  a.site-title, .site-title { color:#eaf8ff; font-size:16px; font-weight:800; }
+
+  /* garante que o header não esteja em posição absoluta a empurrar conteúdo */
+  .header-row, .topbar { position: static; }
 }
 
-/* very small phones */
-@media (max-width:400px){
-  .brand-logo{ width:38px; height:38px; flex:0 0 38px; }
-  .brand-name{ font-size:13px; letter-spacing:1px; max-width:36vw; }
-  .hero-text h1{ font-size:30px; }
-  .logo-plate{ width:170px; height:170px; }
+/* ==========================================================
+   Fallbacks e utilitários
+   ========================================================== */
+
+.hide-on-mobile { display: none; }
+.center { display:flex; justify-content:center; align-items:center; }
+.full-width { width:100%; }
+
+/* correção específica para casos em que o HTML aplica inline width muito grande */
+.hero-card svg[width], .hero-card svg[height] {
+  width: auto !important;
+  max-width: 420px !important;
+  height: auto !important;
 }
 
-/* ---------- micro-interactions ---------- */
-a,button{ transition:var(--transition-fast); }
-a:hover, button:hover{ transform: translateY(-3px); }
+/* força que imagens e iframes não ultrapassem o container */
+img, iframe, embed, object { max-width:100%; height:auto; }
 
-/* ---------- accessibility tweaks ---------- */
-a:focus, button:focus { outline: 3px solid rgba(100,190,255,0.12); outline-offset:3px; border-radius:8px; }
-
-/* ---------- small polish: particle overlay mask (so header reads) ---------- */
-.site-header::after{
-  content:"";
-  position:absolute;
-  left:0; right:0; top:100%;
-  height:20px;
-  pointer-events:none;
-}
-
-/* ---------- End stylesheet ---------- */
+/* ----------------------------------------------------------
+   Nota:
+   - Se no teu HTML as classes tiverem nomes diferentes (ex: .badge em vez de .hero-logo),
+     estas regras contêm seletores alternativos (.logo-img, .badge-preview, svg.hero-svg)
+     para cobrir os casos mais comuns.
+   - Se depois disto alguma coisa ainda estiver azul (link), procura no HTML por:
+       <a href="..." class="site-title">QUANTUMKEY</a>
+     e remove a cor inline ou adiciona: class="site-title"
+   ---------------------------------------------------------- */
