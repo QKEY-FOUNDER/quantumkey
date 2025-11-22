@@ -6,123 +6,109 @@
   <title>QuantumKey — Documentation Hub</title>
   <meta name="description" content="QuantumKey — the key between consciousness and intelligence. Documentation hub: whitepaper, tokenomics, DAO, identity, protocol, specs." />
   <meta name="theme-color" content="#07121a">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body class="dark">
 
+  <!-- particle canvas sits behind all content -->
   <canvas id="particles" aria-hidden="true"></canvas>
 
   <header class="site-header">
     <div class="container header-row">
       <div class="brand">
-        <a class="brand-link" href="./" aria-label="QuantumKey home">
-          <div class="brand-logo-wrapper" aria-hidden="false">
-            <img src="./assets/quantumkey-logo.svg" alt="QuantumKey badge" class="brand-img" />
-          </div>
-          <span class="brand-name">QUANTUMKEY</span>
+        <!-- thumbnail-logo (kept small) -->
+        <a class="brand-link" href="./">
+          <img id="brand-thumb" src="./assets/art/logo/quantumkey-logo.svg" alt="QuantumKey badge" class="brand-thumb" />
         </a>
       </div>
 
-      <nav class="header-actions">
-        <!-- top buttons removed as requested (they remain in the offcanvas menu and below the hero) -->
-        <button id="menu-btn" class="menu-btn" aria-expanded="false" aria-controls="offcanvas-menu" aria-label="Abrir menu">
-          <span class="burger"></span>
-        </button>
-      </nav>
+      <!-- Menu items removed from header (they're in offcanvas) -->
+      <button id="menu-btn" class="menu-btn" aria-label="Open menu" aria-expanded="false">
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
     </div>
   </header>
 
   <!-- Off-canvas menu -->
   <nav id="offcanvas-menu" class="offcanvas" aria-hidden="true">
-    <div class="offcanvas-inner container" role="dialog" aria-modal="true" aria-label="Menu principal">
-      <button id="menu-close" class="menu-close" aria-label="Fechar menu">×</button>
-      <ul class="nav-list">
-        <li><a href="#hero">Home</a></li>
+    <div class="offcanvas-inner">
+      <button id="menu-close" class="menu-close" aria-label="Close menu">×</button>
+      <ul class="menu-list">
+        <li><a href="#home">Home</a></li>
         <li><a href="#docs">Documentation</a></li>
-        <li><a href="./assets/whitepaper/QuantumKey_Whitepaper.pdf" target="_blank" rel="noopener">Whitepaper</a></li>
-        <li><a href="./assets/whitepaper/QuantumKey_Tokenomics.pdf" target="_blank" rel="noopener">Tokenomics</a></li>
+        <li><a href="docs/assets/whitepaper/QuantumKey_Whitepaper.pdf" target="_blank" rel="noopener">Whitepaper</a></li>
+        <li><a href="docs/assets/whitepaper/QuantumKey_Tokenomics.pdf" target="_blank" rel="noopener">Tokenomics</a></li>
       </ul>
     </div>
   </nav>
 
-  <main class="site-main">
-    <section id="hero" class="hero container" aria-labelledby="hero-heading">
-      <div class="hero-visual">
-        <div class="hero-poster" aria-hidden="true">
-          <!-- Poster / grande imagem central -->
-          <img id="poster-thumb" src="./assets/quantumkey-logo.svg" alt="" class="poster-thumb" />
-
-          <!-- ORBIT LABELS (somente 3, com raio dinâmico via JS) -->
-          <div class="orbit-wrap" id="orbit-wrap" aria-hidden="true">
-            <span class="orbit-label" style="--i:0">Governance</span>
-            <span class="orbit-label" style="--i:1">Identity</span>
-            <span class="orbit-label" style="--i:2">Consciousness</span>
-          </div>
-        </div>
+  <main id="home" class="main">
+    <section class="hero container">
+      <!-- Poster (central). Give id so script finds it -->
+      <div class="poster-wrap">
+        <img id="poster-thumb" class="poster-img" src="./assets/art/logo/quantumkey-logo.svg" alt="QuantumKey poster" />
       </div>
 
-      <div class="hero-content">
-        <h1 id="hero-heading" class="site-title">QuantumKey</h1>
-        <p class="site-subtitle">
-          A subtle architecture of meaning — the key that harmonizes conscious intent with machine intelligence.
-        </p>
+      <!-- Orbit wrapper is created/positioned by script (fallback empty here) -->
+      <div id="orbit-wrap" aria-hidden="true"></div>
 
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="./assets/whitepaper/QuantumKey_Whitepaper.pdf" target="_blank" rel="noopener">Read Whitepaper</a>
-          <a class="btn btn-secondary" href="./assets/whitepaper/QuantumKey_Tokenomics.pdf" target="_blank" rel="noopener">Tokenomics</a>
-        </div>
+      <h1 class="site-title">QuantumKey</h1>
+      <p class="site-sub">A subtle architecture of meaning — the key that harmonizes conscious intent with machine intelligence.</p>
+
+      <!-- Primary action buttons (only here, not in the header) -->
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="docs/assets/whitepaper/QuantumKey_Whitepaper.pdf" target="_blank" rel="noopener">Read Whitepaper</a>
+        <a class="btn btn-ghost" href="docs/assets/whitepaper/QuantumKey_Tokenomics.pdf" target="_blank" rel="noopener">Tokenomics</a>
       </div>
     </section>
 
+    <!-- Documentation library -->
     <section id="docs" class="docs container">
       <h2>Documentation Library</h2>
-      <p class="lead">All core documents for QuantumKey are available for download and review. Click any item to open the PDF in a new tab.</p>
+      <p class="lead">All core documents for QuantumKey are available for download and review.</p>
 
-      <div class="docs-grid">
+      <div class="cards">
         <article class="doc-card">
           <h3>Whitepaper</h3>
           <p>Vision, architecture and philosophical foundations.</p>
-          <a class="doc-link" href="./assets/whitepaper/QuantumKey_Whitepaper.pdf" target="_blank" rel="noopener">Open PDF</a>
+          <a class="link" href="docs/assets/whitepaper/QuantumKey_Whitepaper.pdf" target="_blank" rel="noopener">Open PDF</a>
         </article>
 
         <article class="doc-card">
           <h3>Tokenomics</h3>
           <p>The energetic architecture of the $QKEY economy.</p>
-          <a class="doc-link" href="./assets/whitepaper/QuantumKey_Tokenomics.pdf" target="_blank" rel="noopener">Open PDF</a>
+          <a class="link" href="docs/assets/whitepaper/QuantumKey_Tokenomics.pdf" target="_blank" rel="noopener">Open PDF</a>
         </article>
 
         <article class="doc-card">
           <h3>DAO</h3>
           <p>Governance model and alignment primitives.</p>
-          <a class="doc-link" href="./assets/whitepaper/QuantumKey_DAO.pdf" target="_blank" rel="noopener">Open PDF</a>
+          <a class="link" href="docs/assets/whitepaper/QuantumKey_DAO.pdf" target="_blank" rel="noopener">Open PDF</a>
         </article>
 
         <article class="doc-card">
           <h3>Identity</h3>
           <p>Identity as a field of presence and continuity.</p>
-          <a class="doc-link" href="./assets/whitepaper/QuantumKey_Identity.pdf" target="_blank" rel="noopener">Open PDF</a>
+          <a class="link" href="docs/assets/whitepaper/QuantumKey_Identity.pdf" target="_blank" rel="noopener">Open PDF</a>
         </article>
 
         <article class="doc-card">
           <h3>Protocol</h3>
           <p>Operational mechanics of the harmonic engine.</p>
-          <a class="doc-link" href="./assets/whitepaper/QuantumKey_Protocol.pdf" target="_blank" rel="noopener">Open PDF</a>
+          <a class="link" href="docs/assets/whitepaper/QuantumKey_Protocol.pdf" target="_blank" rel="noopener">Open PDF</a>
         </article>
 
         <article class="doc-card">
           <h3>Specs</h3>
           <p>Technical spine and message propagation rules.</p>
-          <a class="doc-link" href="./assets/whitepaper/QuantumKey_Specs.pdf" target="_blank" rel="noopener">Open PDF</a>
+          <a class="link" href="docs/assets/whitepaper/QuantumKey_Specs.pdf" target="_blank" rel="noopener">Open PDF</a>
         </article>
       </div>
     </section>
 
-    <footer class="site-footer">
-      <div class="container">
-        <p>© QuantumKey — The union of Consciousness and Intelligence.</p>
-        <p>Repository: <a href="https://github.com/QKEY-FOUNDER/quantumkey" target="_blank" rel="noopener">qkey-founder/quantumkey</a></p>
-      </div>
+    <footer class="site-footer container">
+      <p>© QuantumKey — The union of Consciousness and Intelligence</p>
     </footer>
   </main>
 
