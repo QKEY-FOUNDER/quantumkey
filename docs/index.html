@@ -17,7 +17,6 @@
     <div class="container header-row">
       <div class="brand">
         <a class="brand-link" href="./" aria-label="QuantumKey home">
-          <!-- usando <img> para garantir que o logo apareça sempre -->
           <div class="brand-logo-wrapper" aria-hidden="false">
             <img src="./assets/quantumkey-logo.svg" alt="QuantumKey badge" class="brand-img" />
           </div>
@@ -26,8 +25,7 @@
       </div>
 
       <nav class="header-actions">
-        <a class="top-link" href="./assets/whitepaper/QuantumKey_Whitepaper.pdf" target="_blank" rel="noopener">Read Whitepaper</a>
-        <a class="top-link" href="./assets/whitepaper/QuantumKey_Tokenomics.pdf" target="_blank" rel="noopener">Tokenomics</a>
+        <!-- top buttons removed as requested (they remain in the offcanvas menu and below the hero) -->
         <button id="menu-btn" class="menu-btn" aria-expanded="false" aria-controls="offcanvas-menu" aria-label="Abrir menu">
           <span class="burger"></span>
         </button>
@@ -53,9 +51,10 @@
       <div class="hero-visual">
         <div class="hero-poster" aria-hidden="true">
           <!-- Poster / grande imagem central -->
-          <img src="./assets/quantumkey-logo.svg" alt="" class="poster-thumb" />
-          <!-- ORBIT LABELS (somente 3, com raio ligeiramente maior que a imagem) -->
-          <div class="orbit-wrap" aria-hidden="true">
+          <img id="poster-thumb" src="./assets/quantumkey-logo.svg" alt="" class="poster-thumb" />
+
+          <!-- ORBIT LABELS (somente 3, com raio dinâmico via JS) -->
+          <div class="orbit-wrap" id="orbit-wrap" aria-hidden="true">
             <span class="orbit-label" style="--i:0">Governance</span>
             <span class="orbit-label" style="--i:1">Identity</span>
             <span class="orbit-label" style="--i:2">Consciousness</span>
