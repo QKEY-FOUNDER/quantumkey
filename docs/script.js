@@ -1,4 +1,5 @@
-// script.js — menu interactions + particles + small improvements
+// script.js — menu interactions + particles + dynamic orbit radius
+// Colar em: docs/script.js
 
 document.addEventListener('DOMContentLoaded', function () {
   // MENU: open/close off-canvas with accessibility attributes
@@ -23,28 +24,88 @@ document.addEventListener('DOMContentLoaded', function () {
     menuBtn.focus();
   }
 
-  menuBtn && menuBtn.addEventListener('click', function () {
-    const isOpen = offcanvas.classList.contains('open');
-    if (isOpen) closeMenu(); else openMenu();
-  });
+  if (menuBtn) {
+    menuBtn.addEventListener('click', function () {
+      const isOpen = offcanvas.classList.contains('open');
+      if (isOpen) closeMenu(); else openMenu();
+    });
+  }
 
-  menuClose && menuClose.addEventListener('click', function () {
-    closeMenu();
-  });
+  if (menuClose) {
+    menuClose.addEventListener('click', function () {
+      closeMenu();
+    });
+  }
 
   // close menu when pressing Escape
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && offcanvas.classList.contains('open')) {
+    if (e.key === 'Escape' && offcanvas && offcanvas.classList.contains('open')) {
       closeMenu();
     }
   });
 
   // close when clicking outside content (click on offcanvas area but not inside inner)
-  offcanvas && offcanvas.addEventListener('click', function (ev) {
-    if (ev.target === offcanvas) closeMenu();
-  });
+  if (offcanvas) {
+    offcanvas.addEventListener('click', function (ev) {
+      if (ev.target === offcanvas) closeMenu();
+    });
+  }
 
-  // Particle background (lightweight)
+  /* ------------------------------------------------------------
+     Orbit: calculate center & radius based on poster image bounds
+     ------------------------------------------------------------*/
+  const poster = document.getElementById('poster-thumb');
+  const orbitWrap = document.getElementById('orbit-wrap');
+
+  function computeOrbit() {
+    if (!poster || !orbitWrap) return;
+    // get bounding rect of poster relative to viewport
+    const imgRect = poster.getBoundingClientRect();
+    // compute center of poster in page coords
+    const centerX = imgRect.left + imgRect.width / 2;
+    const centerY = imgRect.top + imgRect.height / 2;
+    // compute radius: a little bigger than the largest half-dimension of poster
+    const baseRadius = Math.max(imgRect.width, imgRect.height) / 2;
+    const extra = Math.max(28, Math.min(160, baseRadius * 0.15)); // extra padding
+    let radius = Math.round(baseRadius + extra);
+
+    // cap radius so it won't overflow tiny screens
+    const maxAllowed = Math.max(window.innerWidth, window.innerHeight) * 0.6;
+    if (radius > maxAllowed) radius = Math.round(maxAllowed);
+
+    // set CSS variable on orbitWrap so labels rotate around poster center
+    orbitWrap.style.setProperty('--orbit-radius', radius + 'px');
+
+    // additionally position orbitWrap center to the poster center (helps precise alignment)
+    // orbitWrap is absolutely positioned inset:0 inside poster container, but if poster container
+    // has offset inside layout, we want transform-origin aligned visually — we use translate to center.
+    const posterParentRect = poster.parentElement.getBoundingClientRect();
+    const offsetX = (imgRect.left - posterParentRect.left) + imgRect.width / 2;
+    const offsetY = (imgRect.top - posterParentRect.top) + imgRect.height / 2;
+    orbitWrap.style.left = '0';
+    orbitWrap.style.top = '0';
+    orbitWrap.style.transform = `translate(${offsetX - posterParentRect.width/2}px, ${offsetY - posterParentRect.height/2}px)`;
+  }
+
+  // compute after image loads and on resize/scroll (scroll can change poster position)
+  function safeCompute() {
+    // small timeout to allow layout to stabilize
+    setTimeout(computeOrbit, 40);
+  }
+
+  if (poster && poster.complete) {
+    safeCompute();
+  } else if (poster) {
+    poster.addEventListener('load', safeCompute);
+  }
+
+  window.addEventListener('resize', safeCompute);
+  window.addEventListener('orientationchange', safeCompute);
+  window.addEventListener('scroll', safeCompute, { passive: true });
+
+  /* ------------------------------------------------------------
+     Particle background (lightweight)
+     ------------------------------------------------------------*/
   const canvas = document.getElementById('particles');
   if (canvas && canvas.getContext) {
     const ctx = canvas.getContext('2d');
