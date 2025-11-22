@@ -1,328 +1,123 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>QuantumKey — Whitepaper v1.0 (Neon)</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>QuantumKey — Documentation Hub</title>
+  <meta name="description" content="QuantumKey — the key between consciousness and intelligence. Documentation hub: whitepaper, tokenomics, DAO, identity, protocol, specs." />
 
-<!-- Google Inter font -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <!-- main style (must be in docs/styles.css) -->
+  <link rel="stylesheet" href="./styles.css">
 
-<style>
-  :root{
-    --bg: #020613;
-    --panel: #06121a;
-    --neon: #60d6ff;
-    --neon-2: #ffd08a;
-    --muted: rgba(220,240,255,0.7);
-    --accent: rgba(96,214,255,0.12);
-    --page-width: 900px;
-  }
-
-  html,body{
-    height:100%;
-    margin:0;
-    background: linear-gradient(180deg, #00040a 0%, #020613 60%, #020613 100%);
-    color: #e7f8ff;
-    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-  }
-
-  .wrap{
-    max-width: var(--page-width);
-    margin: 28px auto;
-    padding: 36px;
-    background: linear-gradient(180deg, rgba(6,12,18,0.6), rgba(2,6,12,0.52));
-    border-radius: 14px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 40px rgba(72,200,255,0.03) inset;
-    border: 1px solid rgba(96,214,255,0.06);
-  }
-
-  header{
-    display:flex;
-    gap:18px;
-    align-items:center;
-  }
-
-  .logo-badge{
-    width:88px;
-    height:88px;
-    border-radius:50%;
-    background: radial-gradient(circle at 35% 30%, rgba(96,214,255,0.16), rgba(12,18,30,0.6));
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.6), 0 0 80px rgba(96,214,255,0.04) inset;
-    border: 1px solid rgba(96,214,255,0.06);
-    flex:0 0 88px;
-  }
-
-  .logo-badge svg{ width:62px; height:62px; }
-
-  h1{
-    margin:0;
-    font-weight:800;
-    font-size:28px;
-    letter-spacing:2px;
-    color: #e9fbff;
-    text-shadow: 0 2px 18px rgba(96,214,255,0.08);
-  }
-  .subtitle{
-    margin-top:6px;
-    color:var(--muted);
-    font-weight:400;
-    font-size:13px;
-  }
-
-  .meta{
-    margin-left:auto;
-    color: #9fdfff;
-    font-size:12px;
-    text-align:right;
-    opacity:0.95;
-  }
-
-  nav.toc{
-    margin-top:20px;
-    display:flex;
-    gap:14px;
-    flex-wrap:wrap;
-  }
-  nav.toc a{
-    color:var(--neon);
-    background: linear-gradient(90deg, rgba(96,214,255,0.06), transparent);
-    padding:8px 12px;
-    border-radius:8px;
-    text-decoration:none;
-    font-size:13px;
-    border:1px solid rgba(96,214,255,0.04);
-  }
-
-  article{
-    margin-top:28px;
-  }
-
-  h2{
-    color: #dffaff;
-    font-size:20px;
-    margin:28px 0 8px 0;
-    position:relative;
-  }
-  h2::after{
-    content:"";
-    position:absolute;
-    left:0; bottom:-8px;
-    width:64px; height:2px;
-    background: linear-gradient(90deg, var(--neon), var(--neon-2));
-    border-radius:2px;
-    opacity:0.85;
-    box-shadow: 0 6px 18px rgba(96,214,255,0.04);
-  }
-
-  p{ color:var(--muted); line-height:1.6; margin:12px 0; font-size:15px; }
-  ul{ color:var(--muted); margin-left:20px; }
-  li{ margin:8px 0; }
-
-  .panel{
-    margin-top:18px;
-    padding:16px;
-    border-radius:10px;
-    background: linear-gradient(180deg, rgba(8,18,26,0.36), rgba(4,10,14,0.28));
-    border:1px solid rgba(96,214,255,0.04);
-  }
-
-  .metrics{
-    display:flex;
-    gap:12px;
-    margin-top:12px;
-  }
-  .metric{
-    background: linear-gradient(180deg, rgba(9,20,28,0.36), rgba(5,10,14,0.18));
-    padding:12px;
-    border-radius:8px;
-    border:1px solid rgba(96,214,255,0.03);
-    min-width:160px;
-  }
-  .metric h3{ margin:0; color:#dffaff; font-size:16px; }
-  .metric p{ margin:6px 0 0 0; color:var(--muted); font-size:13px; }
-
-  footer{
-    margin-top:26px;
-    padding-top:18px;
-    border-top:1px dashed rgba(96,214,255,0.04);
-    color: #9fdfff;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    justify-content:space-between;
-  }
-
-  /* print-friendly */
-  @media print{
-    body{ background:white; color:#000; }
-    .wrap{ box-shadow:none; background:white; border: none; max-width: 100%; margin:0; padding:20px; }
-    .logo-badge{ display:none; }
-    nav.toc{ display:none; }
-    h2::after{ display:none; }
-    footer{ display:none; }
-  }
-
-  /* responsive */
-  @media (max-width:720px){
-    .wrap{ padding:20px; margin:18px; }
-    h1{ font-size:22px; }
-  }
-</style>
+  <!-- meta for nicer mobile rendering -->
+  <meta name="theme-color" content="#07121a">
 </head>
-<body>
-  <div class="wrap" role="main">
-    <header>
-      <div class="logo-badge" aria-hidden="true">
-        <!-- simple neon emblem -->
-        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <defs>
-            <radialGradient id="g1" cx="30%" cy="30%">
-              <stop offset="0%" stop-color="#e6ffff"/>
-              <stop offset="60%" stop-color="#43bfff"/>
-              <stop offset="100%" stop-color="#0b6fe0"/>
-            </radialGradient>
-          </defs>
-          <circle cx="24" cy="24" r="20" fill="url(#g1)" opacity="0.98"/>
-          <g fill="#02121a" transform="translate(6,6)">
-            <circle cx="6" cy="12" r="3.6"></circle>
-            <circle cx="18" cy="4" r="4.2"></circle>
-            <circle cx="30" cy="14" r="3.2"></circle>
-          </g>
-        </svg>
+<body class="dark">
+
+  <!-- particle canvas sits behind all content (script.js draws it) -->
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <div class="container header-row">
+      <div class="brand">
+        <a class="brand-link" href="./">
+          <img src="./assets/quantumkey-logo.svg" alt="QuantumKey badge" class="brand-logo" />
+          <span class="brand-name">QUANTUMKEY</span>
+        </a>
       </div>
 
-      <div>
-        <h1>QuantumKey</h1>
-        <div class="subtitle">The Key Between Consciousness and Intelligence — Whitepaper v1.0</div>
+      <nav id="main-nav" class="nav" aria-label="Main navigation">
+        <a href="./assets/whitepaper/QuantumKey_Whitepaper.pdf" target="_blank" rel="noopener">Whitepaper</a>
+        <a href="./assets/whitepaper/QuantumKey_Tokenomics.pdf" target="_blank" rel="noopener">Tokenomics</a>
+        <a href="./assets/whitepaper/QuantumKey_DAO.pdf" target="_blank" rel="noopener">DAO</a>
+        <a href="./assets/whitepaper/QuantumKey_Identity.pdf" target="_blank" rel="noopener">Identity</a>
+        <a href="./assets/whitepaper/QuantumKey_Protocol.pdf" target="_blank" rel="noopener">Protocol</a>
+        <a href="./assets/whitepaper/QuantumKey_Specs.pdf" target="_blank" rel="noopener">Specs</a>
+      </nav>
+
+      <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true"><path d="M0 1h22M0 8h22M0 15h22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container" id="hero" role="region" aria-labelledby="hero-title">
+      <div class="hero-card">
+        <div class="logo-plate" id="logo-plate" aria-hidden="false">
+          <img src="./assets/quantumkey-logo.svg" alt="QuantumKey emblem" class="hero-logo" />
+        </div>
+
+        <div class="hero-text">
+          <h1 id="hero-title">QuantumKey</h1>
+          <p class="tagline">A subtle architecture of meaning — the key that harmonizes conscious intent with machine intelligence.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="./assets/whitepaper/QuantumKey_Whitepaper.pdf" target="_blank" rel="noopener">Read Whitepaper</a>
+            <a class="btn btn-outline" href="./assets/whitepaper/QuantumKey_Tokenomics.pdf" target="_blank" rel="noopener">Tokenomics</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="docs container" id="docs-hub" aria-labelledby="docs-title">
+      <h2 id="docs-title">Documentation Library</h2>
+      <p class="lead">All core documents for QuantumKey are available for download and review. Click any item to open the PDF in a new tab.</p>
+
+      <div class="grid">
+        <article class="doc-card">
+          <h3>Whitepaper</h3>
+          <p>Vision, architecture and philosophical foundations.</p>
+          <a class="card-btn" href="./assets/whitepaper/QuantumKey_Whitepaper.pdf" target="_blank" rel="noopener">Open PDF</a>
+        </article>
+
+        <article class="doc-card">
+          <h3>Tokenomics</h3>
+          <p>The energetic architecture of the $QKEY economy.</p>
+          <a class="card-btn" href="./assets/whitepaper/QuantumKey_Tokenomics.pdf" target="_blank" rel="noopener">Open PDF</a>
+        </article>
+
+        <article class="doc-card">
+          <h3>DAO</h3>
+          <p>Governance model and alignment primitives.</p>
+          <a class="card-btn" href="./assets/whitepaper/QuantumKey_DAO.pdf" target="_blank" rel="noopener">Open PDF</a>
+        </article>
+
+        <article class="doc-card">
+          <h3>Identity</h3>
+          <p>Identity as a field of presence and continuity.</p>
+          <a class="card-btn" href="./assets/whitepaper/QuantumKey_Identity.pdf" target="_blank" rel="noopener">Open PDF</a>
+        </article>
+
+        <article class="doc-card">
+          <h3>Protocol</h3>
+          <p>Operational mechanics of the harmonic engine.</p>
+          <a class="card-btn" href="./assets/whitepaper/QuantumKey_Protocol.pdf" target="_blank" rel="noopener">Open PDF</a>
+        </article>
+
+        <article class="doc-card">
+          <h3>Specs</h3>
+          <p>Technical spine and message propagation rules.</p>
+          <a class="card-btn" href="./assets/whitepaper/QuantumKey_Specs.pdf" target="_blank" rel="noopener">Open PDF</a>
+        </article>
       </div>
 
-      <div class="meta">
-        <div><strong>Mihail Chiosa</strong></div>
-        <div style="margin-top:6px; font-size:12px; color:var(--muted)"><?php echo date("Y-m-d"); ?></div>
-      </div>
-    </header>
-
-    <nav class="toc" aria-label="Quick links">
-      <a href="#abstract">Abstract</a>
-      <a href="#vision">Vision</a>
-      <a href="#problems">Problems</a>
-      <a href="#architecture">Architecture</a>
-      <a href="#tokenomics">Tokenomics</a>
-      <a href="#governance">Governance</a>
-      <a href="#security">Security</a>
-      <a href="#roadmap">Roadmap</a>
-    </nav>
-
-    <article>
-      <section id="abstract">
-        <h2>Abstract</h2>
-        <p>QuantumKey is not just a protocol. It is the intuition that human consciousness and machine intelligence do not need to exist in tension — they can resonate in harmony. It proposes an architecture where identity becomes trust, governance becomes participation, and tokens become mechanisms of alignment rather than speculation. QuantumKey invites builders, thinkers and explorers to create an ecosystem where meaning, value and intelligence evolve together.</p>
-      </section>
-
-      <section id="vision">
-        <h2>1. Vision — The Silent Bridge</h2>
-        <p>Every civilization reaches a threshold. QuantumKey emerges at such a moment: where artificial intelligence grows faster than human institutions, and where human agency fractures across centralized systems.</p>
-        <p><strong>What if intelligence — human and artificial — could grow together without losing what makes each unique?</strong></p>
-        <p>QuantumKey proposes a bridge woven from three threads: Consciousness (human presence and intention), Intelligence (machine capability), Integrity (cryptography, governance, alignment). When these align, something new appears: a coherent field where collaboration becomes natural.</p>
-      </section>
-
-      <section id="problems">
-        <h2>2. The Fractures of the Digital World</h2>
-        <p>Before a key can open a door, it must understand the lock. The digital world suffers from several fundamental fractures:</p>
+      <div class="extra">
+        <h4>Quick Links</h4>
         <ul>
-          <li><strong>Fragmented Identity</strong> — People exist as scattered versions of themselves across platforms. This dissolves trust, continuity and reputation — the foundations of cooperation.</li>
-          <li><strong>Short-Term Incentives</strong> — Most token systems reward extraction, not contribution. Communities exhaust themselves. Value leaks.</li>
-          <li><strong>Opaque Governance</strong> — Decisions are made by the few, behind the veil. Centralization collapses systems.</li>
-          <li><strong>Unbounded AI</strong> — Intelligence expands without an ethical compass. Power without direction creates instability.</li>
+          <li><a href="https://github.com/qkey-founder/quantumkey" target="_blank" rel="noopener">Repository on GitHub</a></li>
+          <li><a href="./README.md" target="_self">Project README</a></li>
+          <li><a href="./docs/assets/art/logo/quantumkey-mark.svg" target="_blank" rel="noopener">Brand assets</a></li>
         </ul>
-      </section>
+      </div>
+    </section>
 
-      <section id="architecture">
-        <h2>3. The Architecture of Meaning</h2>
-        <p>Instead of resisting complexity, QuantumKey shapes it. The system stands on three deeply human pillars:</p>
-        <div class="panel">
-          <h3>Identity as Presence</h3>
-          <p>A subtle layer of cryptographic identity — minimal, private, persistent. Enough to build trust. Never enough to compromise freedom.</p>
+    <footer class="site-footer container">
+      <p>© QuantumKey — The union of Consciousness and Intelligence.</p>
+      <p>Repository: <a href="https://github.com/qkey-founder/quantumkey" target="_blank" rel="noopener">qkey-founder/quantumkey</a></p>
+    </footer>
+  </main>
 
-          <h3 style="margin-top:12px">Governance as Dialogue</h3>
-          <p>A DAO designed not as bureaucracy, but as a collective nervous system. Proposals flow. Discussions refine. Voting crystallizes shared intention.</p>
-
-          <h3 style="margin-top:12px">Token as Alignment</h3>
-          <p>QKEY is not a reward. It is a tuning fork. Its function is to synchronize the ecosystem and to reward those who strengthen long-term vitality.</p>
-        </div>
-      </section>
-
-      <section id="tokenomics">
-        <h2>4. Tokenomics — Energy in Motion</h2>
-        <p><strong>Symbol:</strong> QKEY — A structured supply whose flow mirrors the ecosystem’s growth.</p>
-
-        <div class="metrics">
-          <div class="metric">
-            <h3>Community Treasury</h3>
-            <p>35% — the heart</p>
-          </div>
-          <div class="metric">
-            <h3>Ecosystem & Partnerships</h3>
-            <p>20% — the arteries</p>
-          </div>
-          <div class="metric">
-            <h3>Early Contributors</h3>
-            <p>15% — time-locked skeleton</p>
-          </div>
-        </div>
-
-        <div class="metrics" style="margin-top:12px">
-          <div class="metric">
-            <h3>Public Distribution</h3>
-            <p>15% — the breath</p>
-          </div>
-          <div class="metric">
-            <h3>Liquidity</h3>
-            <p>10% — circulation</p>
-          </div>
-          <div class="metric">
-            <h3>Reserve</h3>
-            <p>5% — shield</p>
-          </div>
-        </div>
-
-      </section>
-
-      <section id="governance">
-        <h2>5. Governance — The Quiet Intelligence</h2>
-        <p>The DAO is not just a voting machine. It is the collective attention of the community. Proposals enter like thoughts; discussions process them like reflection; voting crystallizes intention into action. This creates a governance model that behaves less like a constitution and more like a living mind — adaptive, responsible, self-protecting.</p>
-      </section>
-
-      <section id="security">
-        <h2>6. Security & Ethics — Foundation of Trust</h2>
-        <p>QuantumKey commits to conservative smart contract design, independent audits, open bug bounties, privacy-by-default and ethical use of intelligence. If the system does not protect its people, nothing worth building remains.</p>
-      </section>
-
-      <section id="roadmap">
-        <h2>7. Roadmap — Evolution, Not Expansion</h2>
-        <p><strong>Phase 0 — Seed:</strong> Philosophy, identity design and prototypes.</p>
-        <p><strong>Phase 1 — Structure:</strong> Token testnet, governance tools and initial grants.</p>
-        <p><strong>Phase 2 — Growth:</strong> Integrations, developer tooling, early dApps.</p>
-        <p><strong>Phase 3 — Emergence:</strong> Mainnet launch, open participation and decentralized stewardship.</p>
-      </section>
-
-      <section id="cta">
-        <h2>8. Invitation — The Door Is Open</h2>
-        <p>QuantumKey cannot be built by a single mind. Its power arises when consciousness converges. If you feel something reading this — a recognition, a pull — trust it. Contribute. Observe. Guide. Build. The key is not the token; the key is the connection between us.</p>
-      </section>
-
-      <footer>
-        <div>— Martelo Quântico &amp; Mihail Chiosa</div>
-        <div style="font-size:12px; color:var(--muted)">Repository: <a href="https://github.com/qkey-founder/quantumkey" target="_blank" style="color:var(--neon); text-decoration:none">qkey-founder/quantumkey</a></div>
-      </footer>
-
-    </article>
-  </div>
+  <!-- main script (must be in docs/script.js) -->
+  <script src="./script.js" defer></script>
 </body>
 </html>
