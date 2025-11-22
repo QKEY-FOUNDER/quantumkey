@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
     offcanvas.setAttribute('aria-hidden', 'false');
     menuBtn.setAttribute('aria-expanded', 'true');
     document.body.classList.add('menu-open');
-    // focus first focusable item in menu
     const first = offcanvas.querySelector(focusableSelector);
     if (first) first.focus();
   }
@@ -52,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let w = canvas.width = window.innerWidth;
     let h = canvas.height = window.innerHeight;
     const particles = [];
-    const N = Math.floor(Math.max(30, (w*h) / 120000));
+    const N = Math.floor(Math.max(20, (w*h) / 140000));
     function rand(min, max){ return Math.random()*(max-min)+min; }
     for (let i=0;i<N;i++){
       particles.push({
@@ -60,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
         y: rand(0,h),
         r: rand(0.4,1.6),
         vx: rand(-0.2,0.2),
-        vy: rand(-0.15,0.15),
+        vy: rand(-0.12,0.12),
         alpha: rand(0.04,0.18)
       });
     }
