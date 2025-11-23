@@ -1,47 +1,69 @@
-// script.js — menu interactions + particles + small improvements
-
 document.addEventListener('DOMContentLoaded', function () {
-  // MENU: open/close off-canvas with accessibility attributes
+  // Robust menu open/close logic
   const menuBtn = document.getElementById('menu-btn');
   const offcanvas = document.getElementById('offcanvas-menu');
   const menuClose = document.getElementById('menu-close');
   const focusableSelector = 'a, button, input, textarea, [tabindex]:not([tabindex="-1"])';
+  let lastFocusedBeforeOpen = null;
+
+  function safeFocus(el) {
+    try { if (el && typeof el.focus === 'function') el.focus(); } catch (e) {}
+  }
 
   function openMenu() {
+    if (!offcanvas) return;
+    lastFocusedBeforeOpen = document.activeElement;
     offcanvas.classList.add('open');
     offcanvas.setAttribute('aria-hidden', 'false');
-    menuBtn.setAttribute('aria-expanded', 'true');
+    menuBtn && menuBtn.setAttribute('aria-expanded', 'true');
     document.body.classList.add('menu-open');
+    // ensure pointer events enabled (CSS also handles it)
+    offcanvas.style.pointerEvents = 'auto';
+    // focus first focusable
     const first = offcanvas.querySelector(focusableSelector);
-    if (first) first.focus();
+    if (first) safeFocus(first);
   }
+
   function closeMenu() {
+    if (!offcanvas) return;
     offcanvas.classList.remove('open');
     offcanvas.setAttribute('aria-hidden', 'true');
-    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn && menuBtn.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('menu-open');
-    menuBtn.focus();
+    offcanvas.style.pointerEvents = 'none';
+    // return focus to previous
+    if (lastFocusedBeforeOpen) safeFocus(lastFocusedBeforeOpen);
   }
 
-  menuBtn && menuBtn.addEventListener('click', function () {
-    const isOpen = offcanvas.classList.contains('open');
-    if (isOpen) closeMenu(); else openMenu();
-  });
+  // attach listeners safely
+  if (menuBtn) {
+    menuBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (!offcanvas) return;
+      if (offcanvas.classList.contains('open')) closeMenu(); else openMenu();
+    });
+  }
 
-  menuClose && menuClose.addEventListener('click', function () {
-    closeMenu();
-  });
+  if (menuClose) {
+    menuClose.addEventListener('click', function (e) {
+      e.preventDefault();
+      closeMenu();
+    });
+  }
 
-  // close menu when pressing Escape
+  // click outside close
+  if (offcanvas) {
+    offcanvas.addEventListener('click', function (ev) {
+      // if user clicks overlay area (outside inner)
+      if (ev.target === offcanvas) closeMenu();
+    });
+  }
+
+  // Escape key closes
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && offcanvas.classList.contains('open')) {
+    if (e.key === 'Escape' && offcanvas && offcanvas.classList.contains('open')) {
       closeMenu();
     }
-  });
-
-  // close when clicking outside content (click on offcanvas area but not inside inner)
-  offcanvas && offcanvas.addEventListener('click', function (ev) {
-    if (ev.target === offcanvas) closeMenu();
   });
 
   // Particle background (lightweight)
@@ -87,6 +109,59 @@ document.addEventListener('DOMContentLoaded', function () {
       requestAnimationFrame(draw);
     }
     requestAnimationFrame(draw);
+  }
+
+  // Orbital labels (simple animation), robust checks
+  const poster = document.querySelector('.poster-thumb');
+  const orbitWrap = document.querySelector('.orbit-wrap');
+  const orbitLabels = orbitWrap ? Array.from(orbitWrap.querySelectorAll('.orbit-label')) : [];
+
+  if (poster && orbitWrap && orbitLabels.length === 3) {
+    let angle = 0;
+    const offsets = [0, (Math.PI*2)/3, (Math.PI*4)/3]; // three positions
+    const speed = (Math.PI*2) / 28; // full rotation in 28s
+
+    function updateOrbit() {
+      const rect = poster.getBoundingClientRect();
+      const centerX = rect.left + rect.width/2 + window.scrollX;
+      const centerY = rect.top + rect.height/2 + window.scrollY;
+      const radius = Math.max(rect.width, rect.height) * 0.6 + 40;
+
+      angle += speed / 60; // assumes ~60fps
+
+      orbitLabels.forEach((label, idx) => {
+        const a = angle + offsets[idx];
+        const x = centerX + Math.cos(a) * radius;
+        const y = centerY + Math.sin(a) * radius;
+        const rectL = label.getBoundingClientRect();
+        const w = rectL.width || 100;
+        const h = rectL.height || 30;
+        label.style.left = (x - w/2) + 'px';
+        label.style.top = (y - h/2) + 'px';
+
+        const deg = a * 180 / Math.PI;
+        // rotate wrapper so it follows orbit path, then counter-rotate inner text
+        label.style.transform = `rotate(${deg}deg)`;
+        // ensure label contains no nested tags that break layout — use <span> or plain text
+        // safe attempt to counter-rotate children
+        const children = Array.from(label.children || []);
+        children.forEach(child => {
+          if (child && child.style) child.style.transform = `rotate(${-deg}deg)`;
+        });
+      });
+
+      requestAnimationFrame(updateOrbit);
+    }
+
+    function startWhenReady() {
+      const r = poster.getBoundingClientRect();
+      if (r.width > 10) {
+        requestAnimationFrame(updateOrbit);
+      } else {
+        setTimeout(startWhenReady, 200);
+      }
+    }
+    startWhenReady();
   }
 
 });
