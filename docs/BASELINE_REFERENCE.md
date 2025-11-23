@@ -467,7 +467,146 @@ document.addEventListener("DOMContentLoaded", () => {
 4. quantumkey-logo.svg
 
 ```xml
-(... conteúdo completo do quantumkey-logo.svg ...)
+(... <?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1000 1000"
+     width="1000" height="1000"
+     role="img" aria-labelledby="title desc">
+  <title id="title">QuantumKey badge — emblem</title>
+  <desc id="desc">Circular neon badge with three glowing spheres (QFT, Consciousness, GR) and QUANTUMKEY wordmark below the badge.</desc>
+
+  <defs>
+    <!-- gradients -->
+    <radialGradient id="gradQ" cx="30%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#e8ffff"/>
+      <stop offset="40%" stop-color="#63e7ff"/>
+      <stop offset="100%" stop-color="#0ea7ff"/>
+    </radialGradient>
+
+    <radialGradient id="gradC" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#fff7d6"/>
+      <stop offset="40%" stop-color="#ffb57a"/>
+      <stop offset="100%" stop-color="#ff6e8a"/>
+    </radialGradient>
+
+    <radialGradient id="gradR" cx="70%" cy="60%" r="60%">
+      <stop offset="0%" stop-color="#fff6e8"/>
+      <stop offset="40%" stop-color="#ffd07a"/>
+      <stop offset="100%" stop-color="#ff8a2c"/>
+    </radialGradient>
+
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="12" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <style><![CDATA[
+      .bg { fill:#041216; }
+      .vign { fill: url(#vign); }
+      .title { font-family: Inter, system-ui, Arial, sans-serif; font-weight:800; fill:#e8fbff; font-size:34px; letter-spacing:4px; }
+      .subtitle { font-family: Inter, system-ui, Arial, sans-serif; font-size:12px; fill:rgba(200,230,240,0.7); }
+      .label { font-family: Inter, system-ui, Arial, sans-serif; font-weight:700; fill:#031216; }
+      .small { font-family: Inter, system-ui, Arial, sans-serif; font-size:12px; fill:rgba(10,20,30,0.88); }
+      .dash-cool { fill:none; stroke:#9fe7ff; stroke-width:4; stroke-linecap:round; stroke-dasharray:14 10; opacity:0.98; }
+      .dash-warm { fill:none; stroke:#ffd6a3; stroke-width:4.6; stroke-linecap:round; stroke-dasharray:12 8; opacity:0.98; }
+      #pA { animation: dashAnimA 6.5s linear infinite; }
+      #pB { animation: dashAnimB 5.2s linear infinite; }
+      #pC { animation: dashAnimC 7.0s linear infinite; }
+      @keyframes dashAnimA { from { stroke-dashoffset: 0 } to { stroke-dashoffset: -800 } }
+      @keyframes dashAnimB { from { stroke-dashoffset: 0 } to { stroke-dashoffset: -600 } }
+      @keyframes dashAnimC { from { stroke-dashoffset: 0 } to { stroke-dashoffset: -700 } }
+    ]]></style>
+
+    <radialGradient id="vign" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="rgba(6,18,22,0.0)"/>
+      <stop offset="100%" stop-color="rgba(2,8,12,0.8)"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="100%" height="100%" class="bg"/>
+  <rect width="100%" height="100%" class="vign"/>
+
+  <!-- circular clip so the badge preview looks round -->
+  <g clip-path="circle(480 at 500 460)">
+
+    <!-- outer soft ring -->
+    <g filter="url(#glow)" opacity="0.95">
+      <circle cx="500" cy="460" r="420" fill="rgba(8,18,26,0.06)"/>
+      <circle cx="500" cy="460" r="360" fill="rgba(4,10,12,0.06)"/>
+    </g>
+
+    <!-- left sphere (QFT) -->
+    <g transform="translate(240,460)">
+      <circle cx="0" cy="0" r="120" fill="url(#gradQ)" filter="url(#glow)"/>
+      <circle cx="-12" cy="-8" r="4" fill="#ffffff" opacity="0.95"/>
+      <text class="label" x="0" y="8" font-size="36" text-anchor="middle">QFT</text>
+      <text class="small" x="0" y="40" text-anchor="middle">fields • possibility</text>
+    </g>
+
+    <!-- top sphere (Consciousness) -->
+    <g transform="translate(500,220)">
+      <circle cx="0" cy="0" r="135" fill="url(#gradC)" filter="url(#glow)"/>
+      <circle cx="-10" cy="-12" r="4.2" fill="#ffffff" opacity="0.96"/>
+      <text class="label" x="0" y="12" font-size="28" text-anchor="middle">Consciousness</text>
+      <text class="small" x="0" y="36" text-anchor="middle">awareness • integration</text>
+    </g>
+
+    <!-- right sphere (GR) -->
+    <g transform="translate(760,520)">
+      <circle cx="0" cy="0" r="100" fill="url(#gradR)" filter="url(#glow)"/>
+      <circle cx="12" cy="10" r="3.6" fill="#ffffff" opacity="0.96"/>
+      <text class="label" x="0" y="10" font-size="30" text-anchor="middle">GR</text>
+      <text class="small" x="0" y="36" text-anchor="middle">structure • anchor</text>
+    </g>
+
+    <!-- animated dashed connectors (arrows simplified for SVG preview) -->
+    <path id="pA" class="dash-cool" d="M340,420 C420,360 480,320 500,300"/>
+    <path class="dash-cool" d="M500,300 L492,308 L504,312" stroke-width="4" />
+
+    <path id="pB" class="dash-warm" d="M540,340 C660,400 720,460 748,504"/>
+    <path class="dash-warm" d="M748,504 L740,496 L756,496" stroke-width="4" />
+
+    <path id="pC" class="dash-cool" d="M740,520 C640,516 560,500 380,468"/>
+    <path class="dash-cool" d="M380,468 L392,464 L378,458" stroke-width="4"/>
+
+    <!-- gentle structural strokes -->
+    <g stroke="rgba(255,255,255,0.03)" stroke-width="18" stroke-linecap="round">
+      <path d="M240,460 C340,420 480,380 500,300"/>
+      <path d="M500,300 C610,380 720,460 760,520"/>
+      <path d="M760,520 C630,512 520,496 380,468"/>
+    </g>
+
+    <!-- equations / center -->
+    <g transform="translate(360,740)" fill="rgba(230,240,255,0.95)" font-family="Inter, system-ui, Arial">
+      <text x="0" y="0" font-size="28" font-weight="700">(α) Φ = 1</text>
+      <text x="0" y="36" font-size="16">☐ + Λ → p ≈ ½ Σ(Ψ, g)</text>
+    </g>
+
+    <!-- small footer signature inside circle -->
+    <g transform="translate(500,890)" text-anchor="middle" fill="rgba(200,220,235,0.55)" font-family="Inter, system-ui, Arial" font-size="11">
+      <text x="0" y="0">interlinked fields • operators as motion • equations as portals</text>
+    </g>
+
+    <!-- decorative small particles -->
+    <g fill="#c6f2ff" opacity="0.9">
+      <circle cx="420" cy="120" r="1.8"/>
+      <circle cx="680" cy="90" r="1.6"/>
+      <circle cx="780" cy="240" r="1.4"/>
+      <circle cx="360" cy="520" r="1.2"/>
+      <circle cx="920" cy="640" r="1.6"/>
+      <circle cx="160" cy="360" r="1.3"/>
+    </g>
+
+  </g> <!-- end clip group -->
+
+  <!-- WORDMARK centered BELOW the circular badge (clear, big and readable) -->
+  <g transform="translate(500,960)" text-anchor="middle" aria-hidden="false">
+    <text class="title" x="0" y="-6">QUANTUMKEY</text>
+    <text class="subtitle" x="0" y="20">the key between consciousness &amp; intelligence</text>
+  </g>
+
+</svg> ...)
 ```
 
 # QuantumKey — Baseline Reference (Stable Build)
