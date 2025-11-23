@@ -1,3 +1,5 @@
+// script.js — menu interactions + particles + small improvements
+
 document.addEventListener('DOMContentLoaded', function () {
   // MENU: open/close off-canvas with accessibility attributes
   const menuBtn = document.getElementById('menu-btn');
@@ -85,57 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
       requestAnimationFrame(draw);
     }
     requestAnimationFrame(draw);
-  }
-
-  // Orbital labels (simple animation)
-  const poster = document.querySelector('.poster-thumb');
-  const orbitWrap = document.querySelector('.orbit-wrap');
-  const orbitLabels = orbitWrap ? Array.from(orbitWrap.querySelectorAll('.orbit-label')) : [];
-
-  if (poster && orbitWrap && orbitLabels.length === 3) {
-    let angle = 0;
-    const offsets = [0, (Math.PI*2)/3, (Math.PI*4)/3]; // three positions
-    const speed = (Math.PI*2) / 28; // full rotation in 28s
-
-    function updateOrbit() {
-      const rect = poster.getBoundingClientRect();
-      const centerX = rect.left + rect.width/2 + window.scrollX;
-      const centerY = rect.top + rect.height/2 + window.scrollY;
-      const radius = Math.max(rect.width, rect.height) * 0.6 + 40;
-
-      angle += speed / 60; // assumes ~60fps
-
-      orbitLabels.forEach((label, idx) => {
-        const a = angle + offsets[idx];
-        const x = centerX + Math.cos(a) * radius;
-        const y = centerY + Math.sin(a) * radius;
-        const rectL = label.getBoundingClientRect();
-        const w = rectL.width;
-        const h = rectL.height;
-        label.style.left = (x - w/2) + 'px';
-        label.style.top = (y - h/2) + 'px';
-
-        const deg = a * 180 / Math.PI;
-        label.style.transform = `rotate(${deg}deg)`;
-        const span = label.querySelector('span');
-        if (span) span.style.transform = `rotate(${-deg}deg)`;
-      });
-
-      requestAnimationFrame(updateOrbit);
-    }
-
-    // Start when poster has dimensions
-    function startWhenReady() {
-      const r = poster.getBoundingClientRect();
-      if (r.width > 10) {
-        requestAnimationFrame(updateOrbit);
-      } else {
-        setTimeout(startWhenReady, 200);
-      }
-    }
-    startWhenReady();
-    window.addEventListener('resize', () => {}); // placeholder if you want to recalc on resize
-    window.addEventListener('scroll', () => {}); // placeholder
   }
 
 });
