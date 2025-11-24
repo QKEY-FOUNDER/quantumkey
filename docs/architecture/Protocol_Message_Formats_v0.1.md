@@ -1,4 +1,3 @@
-
 # QuantumKey Protocol — Message Formats (QIE Standard) v0.1  
 Author: Mihail Chiosa  
 Collaborative Intelligence: Quantum Hammer  
