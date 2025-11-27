@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- QuantumKey – Phi simbol, centered at y=236
-     Background: radial center black (#000000) -> outer almost-white (#FBFBF9)
-     Symbol: solar gold radial gradient + subtle glow
+<!-- QuantumKey – Phi symbol, centered horizontally, placed at y=228 (user requested)
+     Background: radial from almost-white edges -> absolute black center (touches symbol)
+     Symbol: solar gold radial gradient + subtle glow; no outer circle (symbol only)
 -->
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="QuantumKey Phi - Solar Gold on Absolute Black">
   <defs>
-    <!-- Background radial gradient: center = absolute black, edges = almost-white -->
+    <!-- Background radial gradient: outer almost-white -> inner black -->
     <radialGradient id="bgCenterToEdge" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
       <!-- center absolute black -->
       <stop offset="0%"  stop-color="#000000" />
-      <!-- keep full black for a while so the symbol sits on absolute black -->
-      <stop offset="48%" stop-color="#000000" />
-      <!-- soften into grey -->
+      <!-- keep full black near center so symbol sits on absolute black -->
+      <stop offset="46%" stop-color="#000000" />
+      <!-- transition to softer grey -->
       <stop offset="70%" stop-color="#1f1f1f" />
       <!-- outer edge almost-white -->
       <stop offset="100%" stop-color="#FBFBF9" />
@@ -27,42 +27,41 @@
     </radialGradient>
 
     <!-- Subtle golden glow for symbol (outer soft halo) -->
-    <filter id="goldGlow" x="-60%" y="-60%" width="220%" height="220%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="b1"/>
+    <filter id="goldGlow" x="-70%" y="-70%" width="240%" height="240%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="b1"/>
       <feMerge>
         <feMergeNode in="b1"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
 
-    <!-- Slight inner highlight (to give the symbol more 'solar' feel) -->
+    <!-- Slight inner highlight overlay -->
     <linearGradient id="symbolShine" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.12"/>
-      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.06"/>
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.14"/>
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.06"/>
       <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
     </linearGradient>
 
-    <!-- Ensure crisp edges on rendering -->
+    <!-- Ensure consistent glyph rendering if font missing -->
     <style type="text/css"><![CDATA[
       .phi { font-family: "Georgia", "Times New Roman", serif; font-weight: 700; text-anchor: middle; }
     ]]></style>
   </defs>
 
-  <!-- full background filled with radial gradient (center black) -->
+  <!-- full-page background gradient -->
   <rect x="0" y="0" width="512" height="512" fill="url(#bgCenterToEdge)"/>
 
-  <!-- Optional small invisible circle to visually anchor the absolute-black center region (not visible) -->
-  <!-- (keeps the very center strongly black) -->
-  <circle cx="256" cy="256" r="110" fill="#000000" opacity="1" />
+  <!-- reinforce absolute-black center region (so symbol always sits on #000) -->
+  <circle cx="256" cy="256" r="112" fill="#000000" />
 
   <!-- Phi symbol:
        - centered horizontally at x=256
-       - vertical position at y=236 (conforme pediste: deslocamento para baixo via y=236 no teu renderizador)
-       - large font-size so symbol is the only element (no circle)
+       - vertical position at y=228 (pedido: movimento oposto)
+       - large font-size so it becomes main element (no enclosing circle)
   -->
   <text class="phi"
         x="256"
-        y="236"
+        y="228"
         font-size="260"
         dominant-baseline="middle"
         fill="url(#solarGold)"
@@ -70,10 +69,10 @@
     Φ
   </text>
 
-  <!-- a soft shine overlay on top of the symbol to add depth -->
+  <!-- soft shine overlay -->
   <text class="phi"
         x="256"
-        y="236"
+        y="228"
         font-size="260"
         dominant-baseline="middle"
         fill="url(#symbolShine)"
