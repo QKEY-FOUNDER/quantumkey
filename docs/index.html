@@ -6,11 +6,65 @@
   <title>QuantumKey — Documentation Hub</title>
   <meta name="description" content="QuantumKey — the key between consciousness and intelligence. Documentation hub: whitepaper, tokenomics, DAO, identity, protocol, specs." />
   <meta name="theme-color" content="#07121a">
+
+  <!-- Fonts & styles -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
-</head>
-<body class="dark">
 
+  <!-- Small protective CSS overrides to prevent canvas or layering from blocking UI
+       and to ensure offcanvas has predictable pointer behavior.
+       These are safe, minimal, and can be moved into styles.css later.
+  -->
+  <style>
+    /* Ensure the particles canvas never intercepts pointer events */
+    #particles {
+      pointer-events: none !important;
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+
+    /* Header should be above canvas */
+    .site-header {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Offcanvas: hidden state should not intercept clicks */
+    .offcanvas {
+      pointer-events: none;
+      opacity: 0;
+      transform: translateX(-12px);
+      transition: opacity 180ms ease, transform 180ms ease;
+      z-index: 20;
+    }
+    .offcanvas.open {
+      pointer-events: auto;
+      opacity: 1;
+      transform: translateX(0);
+      z-index: 1000;
+    }
+
+    /* Ensure header-actions (menu area) is focusable and above default content */
+    .header-actions {
+      z-index: 11;
+    }
+
+    /* Make overlay/backdrop optional visual; if you add an overlay element later, ensure high z-index */
+    .offcanvas-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.36);
+      z-index: 900;
+      pointer-events: auto;
+    }
+
+    /* Defensive: ensure menu button visible and clickable */
+    .menu-btn { cursor: pointer; }
+  </style>
+</head>
+
+<body class="dark">
   <canvas id="particles" aria-hidden="true"></canvas>
 
   <header class="site-header">
@@ -24,19 +78,20 @@
         </a>
       </div>
 
-      <nav class="header-actions" aria-hidden="true">
+      <!-- keep header-actions interactive (removed aria-hidden) -->
+      <nav class="header-actions">
         <!-- top links intentionally removed -->
-        <button id="menu-btn" class="menu-btn" aria-expanded="false" aria-controls="offcanvas-menu" aria-label="Abrir menu">
+        <button id="menu-btn" class="menu-btn" type="button" aria-expanded="false" aria-controls="offcanvas-menu" aria-label="Abrir menu">
           <span class="burger" aria-hidden="true"></span>
         </button>
       </nav>
     </div>
   </header>
 
-  <!-- Off-canvas menu -->
+  <!-- Off-canvas menu (initially hidden via aria-hidden="true") -->
   <nav id="offcanvas-menu" class="offcanvas" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Menu principal">
     <div class="offcanvas-inner container">
-      <button id="menu-close" class="menu-close" aria-label="Fechar menu">×</button>
+      <button id="menu-close" class="menu-close" type="button" aria-label="Fechar menu">×</button>
       <ul class="nav-list">
         <li><a href="#hero">Home</a></li>
         <li><a href="#docs">Documentation</a></li>
@@ -50,9 +105,8 @@
     <section id="hero" class="hero container" aria-labelledby="hero-heading">
       <div class="hero-visual">
         <div class="hero-poster" aria-hidden="true">
-          <!-- Poster / grande imagem central -->
+          <!-- Poster / large central image -->
           <img src="./assets/quantumkey-logo.svg" alt="QuantumKey poster" class="poster-thumb" />
-          <!-- orbit labels removed as requested -->
         </div>
       </div>
 
@@ -120,6 +174,70 @@
     </footer>
   </main>
 
+  <!-- Inline fallback JS: minimal menu handling, defensive (won't conflict with your script.js) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        const menuBtn = document.getElementById('menu-btn');
+        const offcanvas = document.getElementById('offcanvas-menu');
+        const menuClose = document.getElementById('menu-close');
+
+        if (!menuBtn || !offcanvas) return;
+
+        // Defensive: ensure button types
+        menuBtn.type = 'button';
+        if (menuClose) menuClose.type = 'button';
+
+        function openMenu() {
+          offcanvas.classList.add('open');
+          offcanvas.setAttribute('aria-hidden', 'false');
+          menuBtn.setAttribute('aria-expanded', 'true');
+          // optional: add backdrop if desired
+        }
+        function closeMenu() {
+          offcanvas.classList.remove('open');
+          offcanvas.setAttribute('aria-hidden', 'true');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        menuBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          const hidden = offcanvas.getAttribute('aria-hidden') === 'true';
+          hidden ? openMenu() : closeMenu();
+        });
+
+        if (menuClose) {
+          menuClose.addEventListener('click', function (e) {
+            e.stopPropagation();
+            closeMenu();
+          });
+        }
+
+        // click outside closes menu
+        document.addEventListener('click', function (e) {
+          if (!offcanvas.classList.contains('open')) return;
+          if (!offcanvas.contains(e.target) && !menuBtn.contains(e.target)) {
+            closeMenu();
+          }
+        });
+
+        // ESC closes menu
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && offcanvas.classList.contains('open')) {
+            closeMenu();
+          }
+        });
+
+        // Ensure canvas cannot intercept clicks (extra safety)
+        const canvas = document.getElementById('particles');
+        if (canvas) canvas.style.pointerEvents = 'none';
+      } catch (err) {
+        console.warn('menu fallback error', err);
+      }
+    });
+  </script>
+
+  <!-- External script (deferred). Kept last so DOM is ready; will enhance UI further if present -->
   <script src="./script.js" defer></script>
 </body>
 </html>
