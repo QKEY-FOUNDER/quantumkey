@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+
+  <!-- Fundo transparente -->
+  <rect width="512" height="512" fill="none"/>
+
+  <!-- Halo externo (suave e simétrico) -->
+  <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"  stop-color="rgba(255,215,130,0.22)"/>
+    <stop offset="55%" stop-color="rgba(255,190,80,0.10)"/>
+    <stop offset="100%" stop-color="rgba(255,180,40,0.00)"/>
+  </radialGradient>
+  <circle cx="256" cy="256" r="220" fill="url(#halo)"/>
+
+  <!-- Anel externo dourado -->
+  <radialGradient id="ringGrad" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#ffe2a8"/>
+    <stop offset="50%" stop-color="#ffc769"/>
+    <stop offset="100%" stop-color="#ffb23a"/>
+  </radialGradient>
+  <circle cx="256" cy="256" r="160" fill="none" stroke="url(#ringGrad)" stroke-width="14"/>
+
+  <!-- Núcleo interno, brilho solar -->
+  <radialGradient id="core" cx="50%" cy="50%" r="60%">
+    <stop offset="0%"  stop-color="#fff8d9"/>
+    <stop offset="35%" stop-color="#ffe4a8"/>
+    <stop offset="70%" stop-color="#ffcc67"/>
+    <stop offset="100%" stop-color="#ffb53a"/>
+  </radialGradient>
+  <circle cx="256" cy="256" r="105" fill="url(#core)"/>
+
+  <!-- Reflexo superior (leve) -->
+  <ellipse cx="256" cy="220" rx="60" ry="28" fill="rgba(255,255,255,0.22)"/>
+
+  <!-- Sombra inferior (profundidade) -->
+  <ellipse cx="256" cy="300" rx="70" ry="22" fill="rgba(0,0,0,0.08)"/>
+
+</svg>
