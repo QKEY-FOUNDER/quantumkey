@@ -1,84 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- QuantumKey – Phi symbol, centered horizontally, placed at y=228
-     Background: radial from almost-white edges -> absolute black center (touches symbol)
-     Symbol: solar gold radial gradient + subtle glow; no outer circle (symbol only)
--->
 <svg width="512" height="512" viewBox="0 0 512 512"
-     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="QuantumKey Phi - Solar Gold on Absolute Black">
-  <defs>
-    <!-- Background radial gradient: outer almost-white -> inner black -->
-    <radialGradient id="bgCenterToEdge" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-      <!-- center absolute black -->
-      <stop offset="0%"  stop-color="#000000" />
-      <!-- keep full black near center so symbol sits on absolute black -->
-      <stop offset="46%" stop-color="#000000" />
-      <!-- transition to softer grey -->
-      <stop offset="70%" stop-color="#1f1f1f" />
-      <!-- outer edge almost-white -->
-      <stop offset="100%" stop-color="#FBFBF9" />
-    </radialGradient>
+     xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-label="QuantumKey Phi — Solar Gold on Absolute Black">
 
-    <!-- Solar gold radial for the Phi symbol -->
-    <radialGradient id="solarGold" cx="50%" cy="40%" r="55%" fx="50%" fy="40%">
-      <stop offset="0%"  stop-color="#fff9d6"/>   <!-- brightest core -->
-      <stop offset="15%" stop-color="#ffef9b"/>
-      <stop offset="40%" stop-color="#ffd26a"/>
-      <stop offset="75%" stop-color="#ffb000"/>
+  <defs>
+    <!-- Gradiente dourado para o símbolo -->
+    <radialGradient id="goldRad" cx="50%" cy="45%" r="50%">
+      <stop offset="0%"  stop-color="#fff6d9"/>
+      <stop offset="25%" stop-color="#ffd26a"/>
+      <stop offset="60%" stop-color="#ffb000"/>
       <stop offset="100%" stop-color="#ff9a00"/>
     </radialGradient>
 
-    <!-- Subtle golden glow for symbol (outer soft halo) -->
-    <filter id="goldGlow" x="-70%" y="-70%" width="240%" height="240%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="b1"/>
+    <!-- Gradiente para o contorno glow do símbolo (leve) -->
+    <radialGradient id="goldGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%"  stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="20%" stop-color="#ffd26a" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#ff9a00" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- um pequeno filtro para dar brilho externo ao símbolo -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
       <feMerge>
-        <feMergeNode in="b1"/>
+        <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
 
-    <!-- Slight inner highlight overlay -->
-    <linearGradient id="symbolShine" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.14"/>
-      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.06"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    <!-- cor dourada translúcida para as linhas (fronteiras) -->
+    <linearGradient id="goldFade" x1="0" x2="1">
+      <stop offset="0%" stop-color="#ffd26a" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#ff9a00" stop-opacity="0.45"/>
     </linearGradient>
-
-    <!-- Ensure consistent glyph rendering if font missing -->
-    <style type="text/css"><![CDATA[
-      .phi { font-family: "Georgia", "Times New Roman", serif; font-weight: 700; text-anchor: middle; }
-    ]]></style>
   </defs>
 
-  <!-- full-page background gradient -->
-  <rect x="0" y="0" width="512" height="512" fill="url(#bgCenterToEdge)"/>
+  <!-- fundo totalmente preto como base (assegura preto absoluto no centro) -->
+  <rect width="100%" height="100%" fill="#000000"/>
 
-  <!-- reinforce absolute-black center region (so symbol always sits on #000) -->
-  <circle cx="256" cy="256" r="112" fill="#000000" />
+  <!-- Grupo onde o script vai inserir as 100 bandas do exterior ao interior -->
+  <g id="bands"></g>
 
-  <!-- Phi symbol:
-       - centered horizontally at x=256
-       - vertical position at y=228 (pedido: movimento oposto)
-       - large font-size so it becomes main element (no enclosing circle)
-  -->
-  <text class="phi"
-        x="256"
-        y="228"
-        font-size="260"
-        dominant-baseline="middle"
-        fill="url(#solarGold)"
-        filter="url(#goldGlow)">
-    Φ
-  </text>
+  <!-- Grupo para linhas douradas/translúcidas (fronteiras) -->
+  <g id="borders"></g>
 
-  <!-- soft shine overlay -->
-  <text class="phi"
-        x="256"
-        y="228"
-        font-size="260"
-        dominant-baseline="middle"
-        fill="url(#symbolShine)"
-        style="mix-blend-mode:screen; opacity:0.45; pointer-events:none;">
-    Φ
-  </text>
+  <!-- Símbolo Phi centrado (sem círculo) -->
+  <g id="symbol" transform="translate(256,256)">
+    <!-- pequeno halo radial por baixo do símbolo para brilho solar -->
+    <circle r="88" fill="url(#goldGlow)" />
+    <!-- o símbolo em si; usamos text para manter escalabilidade -->
+    <text id="phi" x="0" y="0"
+      font-family="Georgia, 'Times New Roman', Times, serif"
+      font-weight="700"
+      font-size="220"
+      text-anchor="middle"
+      dominant-baseline="central"
+      fill="url(#goldRad)"
+      filter="url(#glow)"
+      paint-order="stroke fill">
+      &#x03A6;
+    </text>
+  </g>
+
+  <!-- Script pequeno que gera automaticamente as 100 bandas e as linhas fronteira -->
+  <script type="application/ecmascript"><![CDATA[
+    (function(){
+      const svgNS = "http://www.w3.org/2000/svg";
+      const w = 512;
+      const n = 100;               // número de bandas
+      const step = w / n;         // distância entre tamanhos consecutivos
+
+      const bandsGroup = document.getElementById('bands');
+      const bordersGroup = document.getElementById('borders');
+
+      // desenha de fora para dentro: i=0 => branco absoluto (outer), i=n-1 => preto absoluto (inner)
+      for (let i = 0; i < n; i++) {
+        const size = w - i * step;
+        const x = (w - size)/2;
+        const y = x;
+
+        // intensidade de cinza (255->0)
+        const ratio = i / (n - 1);
+        const v = Math.round(255 * (1 - ratio));
+        const hex = v.toString(16).padStart(2,"0");
+        const fill = "#" + hex + hex + hex;
+
+        // rect preenchida (a banda)
+        const r = document.createElementNS(svgNS, 'rect');
+        r.setAttribute('x', x.toFixed(3));
+        r.setAttribute('y', y.toFixed(3));
+        r.setAttribute('width', size.toFixed(3));
+        r.setAttribute('height', size.toFixed(3));
+        r.setAttribute('fill', fill);
+        bandsGroup.appendChild(r);
+
+        // rect apenas com stroke (fronteira dourada translúcida)
+        const s = document.createElementNS(svgNS, 'rect');
+        s.setAttribute('x', x.toFixed(3));
+        s.setAttribute('y', y.toFixed(3));
+        s.setAttribute('width', size.toFixed(3));
+        s.setAttribute('height', size.toFixed(3));
+        s.setAttribute('fill', 'none');
+
+        // tornar a largura da linha proporcional (ex.: mais grossa nas maiores)
+        // aqui mantemos 1.6 -> 1.0 px aproximado: adaptável
+        const strokeW = 2 * Math.max(0.6, ( (n - i) / n ));
+        s.setAttribute('stroke-width', strokeW.toFixed(2));
+        s.setAttribute('stroke', 'url(#goldFade)');
+        s.setAttribute('stroke-opacity', '0.55');
+        bordersGroup.appendChild(s);
+      }
+
+      // Small tweak: ensure the very inner area is solid black so the Phi sits on absolute black
+      // create a final inner square slightly smaller than the last band (to avoid border overlap)
+      const innerSize = w - (n-1) * step - 2.0; // small inset
+      if (innerSize > 0) {
+        const ix = (w - innerSize)/2;
+        const inner = document.createElementNS(svgNS, 'rect');
+        inner.setAttribute('x', ix.toFixed(3));
+        inner.setAttribute('y', ix.toFixed(3));
+        inner.setAttribute('width', innerSize.toFixed(3));
+        inner.setAttribute('height', innerSize.toFixed(3));
+        inner.setAttribute('fill', '#000000');
+        // inserir no topo das bandas, mas abaixo do símbolo
+        bandsGroup.appendChild(inner);
+      }
+
+      // Ajuste final: coloca o grupo do símbolo acima de tudo (já está por cima no markup),
+      // e garante que o Phi esteja centrado (transform já definido).
+    })();
+  ]]></script>
 
 </svg>
