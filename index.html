@@ -13,16 +13,17 @@
 <body>
   <header class="site-header">
     <div class="left">
-      <button id="menu-toggle" aria-label="Abrir menu" class="hamburger">
+      <button id="menu-toggle" aria-label="Abrir menu" class="hamburger" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <img src="docs/assets/quantumkey-logo.svg" alt="QuantumKey icon" class="favicon">
     </div>
 
     <nav class="main-nav" id="main-nav" aria-label="Main navigation">
-      <a class="btn-ghost" id="btn-show-doc">Read Whitepaper</a>
-      <a class="btn-ghost" href="docs/assets/whitepaper/QuantumKey%20Protocol%20--%20Whitepaper%20v1.0.pdf" target="_blank" rel="noopener">Whitepaper (PDF)</a>
-      <a class="btn-ghost" href="docs/EXECUTIVE_SUMMARY.md">Executive Summary</a>
+      <a class="btn-ghost" id="btn-show-doc" href="#">Read Whitepaper</a>
+      <!-- estes hrefs são *de backup*; o JS também os corrige dinamicamente -->
+      <a class="btn-ghost" id="pdf-whitepaper" href="#">Whitepaper (PDF)</a>
+      <a class="btn-ghost" id="pdf-tokenomics" href="#">Tokenomics (PDF)</a>
     </nav>
   </header>
 
@@ -37,12 +38,12 @@
 
       <div class="hero-cta">
         <button class="btn-gradient" id="cta-read">Read Whitepaper</button>
-        <a class="btn-gradient outline" href="docs/assets/whitepaper/QuantumKey%20Protocol%20--%20Whitepaper%20v1.0.pdf" target="_blank" rel="noopener">Tokenomics</a>
+        <a class="btn-gradient outline" id="cta-tokenomics" href="#" target="_blank" rel="noopener">Tokenomics</a>
       </div>
     </section>
 
     <section class="cards" id="pdf-cards">
-      <!-- Cards gerados no JS a partir da lista abaixo -->
+      <!-- Cards gerados no JS -->
     </section>
 
     <section class="md-viewer">
