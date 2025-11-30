@@ -25,7 +25,7 @@ function assetPath(folder, filename){
   return `${folder}/${encodeURIComponent(filename).replace(/%2F/g,'/')}`;
 }
 
-// Valores base — nomes tal como estão no repo (conforme imagens)
+// Valores base — nomes tal como estão no repo (confirma na tree)
 const whitepaperFile = "QuantumKey Protocol — Whitepaper v1.0.pdf";
 const tokenomicsFile = "QuantumKey_Tokenomics_v1.0.pdf";
 
