@@ -4,16 +4,25 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>QuantumKey Protocol — Documentação</title>
+
+  <!-- favicon apontando para a pasta correcta -->
+  <link rel="icon" type="image/svg+xml" href="docs/assets/favicon.svg">
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <div class="brand">
-      <h1>QuantumKey Protocol</h1>
-      <p class="tag">Unified architecture for Intent · Identity · Agents · Governance</p>
+      <!-- small logo: arquivo em docs/assets/ -->
+      <img src="docs/assets/quantumkey-logo.svg" alt="QuantumKey Logo" class="logo-small" />
+
+      <div class="brand-text">
+        <h1>QuantumKey Protocol</h1>
+        <p class="tag">Unified architecture for Intent · Identity · Agents · Governance</p>
+      </div>
     </div>
 
-    <nav class="main-nav">
+    <nav class="main-nav" role="navigation" aria-label="Main">
       <button id="btn-show-doc">Ver Whitepaper (Markdown)</button>
       <a id="pdf-link"
          href="docs/assets/whitepaper/QuantumKey%20Protocol%20--%20Whitepaper%20v1.0.pdf"
@@ -22,8 +31,13 @@
     </nav>
   </header>
 
+  <!-- hero com logo grande (usa o mesmo SVG — fica bem escalável) -->
+  <section class="hero" id="hero" aria-hidden="true">
+    <img src="docs/assets/quantumkey-logo.svg" alt="" class="logo-large" />
+  </section>
+
   <main class="container">
-    <aside class="sidebar">
+    <aside class="sidebar" aria-label="Documentos">
       <h3>Documentos</h3>
       <ul id="doc-list">
         <li><a data-path="docs/WHITEPAPER.md">WHITEPAPER.md</a></li>
@@ -33,16 +47,12 @@
     </aside>
 
     <section class="content">
-      <div id="flash" class="flash">
-        Carregado automaticamente: selecione um documento ou clique em "Ver Whitepaper".
-      </div>
+      <div id="flash" class="flash">Carregado automaticamente: selecione um documento ou clique em "Ver Whitepaper".</div>
       <article id="viewer" class="viewer" aria-live="polite"></article>
     </section>
   </main>
 
-  <footer class="site-footer">
-    © 2025 Mihail Chiosa — Quantum Hammer
-  </footer>
+  <footer class="site-footer">© 2025 Mihail Chiosa — Quantum Hammer</footer>
 
   <script src="script.js"></script>
 </body>
