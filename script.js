@@ -1,22 +1,40 @@
-// script.js — menu mobile + loader de markdown + geração de cartões
+// script.js — menu mobile + loader de markdown + geração de cartões robusta
 
 const viewer = document.getElementById("viewer");
 const flash = document.getElementById("flash");
 const btnShow = document.getElementById("btn-show-doc");
-const pdfLink = document.querySelector('a[href*="Whitepaper"]') || null;
+const pdfWhitepaperBtn = document.getElementById("pdf-whitepaper");
+const pdfTokenomicsBtn = document.getElementById("pdf-tokenomics");
 const ctaRead = document.getElementById("cta-read");
+const ctaTokenomics = document.getElementById("cta-tokenomics");
 
-// Mobile menu toggle
+// Mobile menu toggle (vertical)
 const menuToggle = document.getElementById("menu-toggle");
 const mainNav = document.getElementById("main-nav");
 if(menuToggle){
   menuToggle.addEventListener('click', ()=>{
-    if(mainNav.style.display === 'flex') mainNav.style.display = 'none';
-    else mainNav.style.display = 'flex';
+    const open = mainNav.classList.toggle('mobile-open');
+    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 }
 
-// Lightweight markdown -> HTML (keeps it simple)
+// Utility to safely build encoded URL to file in repo
+function assetPath(folder, filename){
+  // folder ex: "docs/assets/whitepaper"
+  // filename: actual file name as appears in repo
+  return `${folder}/${encodeURIComponent(filename).replace(/%2F/g,'/')}`;
+}
+
+// Valores base — nomes tal como estão no repo (conforme imagens)
+const whitepaperFile = "QuantumKey Protocol — Whitepaper v1.0.pdf";
+const tokenomicsFile = "QuantumKey_Tokenomics_v1.0.pdf";
+
+// Patch link targets in DOM (so the visible buttons open correct PDFs)
+if(pdfWhitepaperBtn) pdfWhitepaperBtn.href = assetPath("docs/assets/whitepaper", whitepaperFile);
+if(pdfTokenomicsBtn) pdfTokenomicsBtn.href = assetPath("docs/assets/whitepaper", tokenomicsFile);
+if(ctaTokenomics) ctaTokenomics.href = assetPath("docs/assets/whitepaper", tokenomicsFile);
+
+// Lightweight markdown -> HTML
 function mdToHtml(md){
   md = md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   md = md.replace(/```([\s\S]*?)```/g, (_, code) => `<pre class="code-block">${code}</pre>`);
@@ -45,21 +63,21 @@ async function fetchAndRender(path){
     flash.style.display = 'none';
     window.scrollTo({top: document.querySelector('.md-viewer').offsetTop - 80, behavior:'smooth'});
   }catch(err){
-    viewer.innerHTML = `<div class="flash">Erro ao carregar: ${err.message}. Abre o PDF <a href="${pdfLink ? pdfLink.href : '#'}" target="_blank">aqui</a>.</div>`;
+    viewer.innerHTML = `<div class="flash">Erro ao carregar: ${err.message}. Abre o PDF <a href="${pdfWhitepaperBtn ? pdfWhitepaperBtn.href : '#'}" target="_blank">aqui</a>.</div>`;
   }
 }
 
 // Buttons actions
-if(btnShow) btnShow.addEventListener('click', ()=> fetchAndRender('docs/WHITEPAPER.md'));
+if(btnShow) btnShow.addEventListener('click', (e)=>{ e.preventDefault(); fetchAndRender('docs/WHITEPAPER.md'); });
 if(ctaRead) ctaRead.addEventListener('click', ()=> fetchAndRender('docs/WHITEPAPER.md'));
 
-// Generate PDF cards (customise list here)
+// Generate PDF cards (uses exact filenames from repo)
 const pdfs = [
-  {title:'Whitepaper', desc:'Vision, architecture and philosophical foundations.', href:'docs/assets/whitepaper/QuantumKey%20Protocol%20--%20Whitepaper%20v1.0.pdf'},
-  {title:'Tokenomics', desc:'The energetic architecture of the $QKEY economy.', href:'docs/assets/whitepaper/QuantumKey_Tokenomics_v1.0.pdf'},
-  {title:'DAO', desc:'Governance model and alignment primitives.', href:'docs/assets/whitepaper/QuantumKey_DAO_v1.0.pdf'},
-  {title:'Identity', desc:'Identity as a field of presence and continuity.', href:'docs/assets/whitepaper/QuantumKey_Identity_v1.0.pdf'},
-  {title:'Protocol', desc:'Operational mechanics of the protocol.', href:'docs/assets/whitepaper/QuantumKey_Protocol_Core_v1.0.pdf'}
+  {title:'Whitepaper', desc:'Vision, architecture and philosophical foundations.', filename: whitepaperFile},
+  {title:'Tokenomics', desc:'The energetic architecture of the $QKEY economy.', filename: tokenomicsFile},
+  {title:'DAO', desc:'Governance model and alignment primitives.', filename:'QuantumKey_DAO_v1.0.pdf'},
+  {title:'Identity', desc:'Identity as a field of presence and continuity.', filename:'QuantumKey_Identity_v1.0.pdf'},
+  {title:'Protocol', desc:'Operational mechanics of the protocol.', filename:'QuantumKey_Protocol_Core_v1.0.pdf'}
 ];
 
 function renderCards(){
@@ -67,19 +85,11 @@ function renderCards(){
   if(!container) return;
   container.innerHTML = '';
   pdfs.forEach(p=>{
+    const href = assetPath('docs/assets/whitepaper', p.filename);
     const card = document.createElement('div');
     card.className = 'card';
-    card.innerHTML = `<h3>${p.title}</h3><p>${p.desc}</p><div><a class="open" href="${p.href}" target="_blank" rel="noopener">Open PDF</a> <button data-md="${p.href.replace('/assets/whitepaper','/WHITEPAPER.md')}" class="open-md">View in site</button></div>`;
+    card.innerHTML = `<h3>${p.title}</h3><p>${p.desc}</p><div><a class="open" href="${href}" target="_blank" rel="noopener">Open PDF</a></div>`;
     container.appendChild(card);
-  });
-
-  // attach event to view in-site (try to fetch any associated MD if path exists)
-  document.querySelectorAll('.open-md').forEach(btn=>{
-    btn.addEventListener('click', (e)=>{
-      const href = e.currentTarget.dataset.md;
-      // if user clicked "View in site", try to load the whitepaper MD fallback
-      fetchAndRender('docs/WHITEPAPER.md');
-    });
   });
 }
 
